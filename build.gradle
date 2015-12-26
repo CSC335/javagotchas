@@ -5,8 +5,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.0'
-        classpath 'junit:junit:4.7'
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'junit:junit:4.8.+'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.7.1'
     }
 }
@@ -30,9 +30,14 @@ repositories {
 dependencies {
     compile 'com.google.guava:guava:18.0'
     compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-3'
-    testCompile "org.robolectric:robolectric:3.0"
-    testCompile "org.mockito:mockito-core:1.+"
-    testCompile "com.google.truth:truth:0.28"
+    compile("org.robolectric:robolectric:3.0")
+    compile("org.mockito:mockito-core:1.+") {
+        exclude module: 'junit'
+        exclude module: 'hamcrest-core'
+    }
+    compile("com.google.truth:truth:0.28") {
+        exclude module: 'junit'
+    }
 }
 
 android {
@@ -41,6 +46,7 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 23
+        multiDexEnabled true
     }
     sourceSets {
         main {
@@ -56,4 +62,11 @@ android {
         }
 
     }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE' // will not include NOTICE file
+        exclude 'META-INF/LICENSE' // will not include LICENSE file
+        exclude 'META-INF/LICENSE.txt' // will not include LICENSE file
+    }
 }
+

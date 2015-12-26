@@ -1,15 +1,14 @@
 package com.jermowery.csc335.javagotchas.questionselector;
 
 import com.jermowery.csc335.javagotchas.BuildConfig;
+import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Answer;
+import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
+import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Answer;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -24,38 +23,32 @@ public class InOrderQuestionSelectorTest {
     private QuestionSelector testQuestionSelector;
     @Before
     public void setUp() {
-        this.q1 = Question.newBuilder()
-                .setId(0)
-                .setText("Question 0")
-                .setExplanation("Explanation 0")
-                .addAnswer(
-                        Answer.newBuilder()
-                                .setText("Answer 1")
-                                .setIsCorrect(true)
-                )
-                .addAnswer(
-                        Answer.newBuilder()
-                                .setText("Answer 2")
-                                .setIsCorrect(false)
-                ).build();
-        this.q2 = Question.newBuilder()
-                .setId(1)
-                .setText("Question 1")
-                .setExplanation("Explanation 1")
-                .addAnswer(
-                        Answer.newBuilder()
-                                .setText("Answer 1")
-                                .setIsCorrect(false)
-                )
-                .addAnswer(
-                        Answer.newBuilder()
-                                .setText("Answer 2")
-                                .setIsCorrect(true)
-                ).build();
-        Data data = Data.newBuilder()
-                .addQuestion(q1)
-                .addQuestion(q2)
-                .build();
+        this.q1 = new Question();
+        this.q1.id = 0;
+        this.q1.text = "Question 0";
+        this.q1.explanation = "Explanation 0";
+        this.q1.answer = new Answer[2];
+        this.q1.answer[0] = new Answer();
+        this.q1.answer[0].isCorrect = true;
+        this.q1.answer[0].text = "Answer 1";
+        this.q1.answer[1] = new Answer();
+        this.q1.answer[1].isCorrect = false;
+        this.q1.answer[1].text = "Answer 2";
+        this.q2 = new Question();
+        this.q2.id = 1;
+        this.q2.text = "Question 1";
+        this.q2.explanation = "Explanation 1";
+        this.q2.answer = new Answer[2];
+        this.q2.answer[0] = new Answer();
+        this.q2.answer[0].isCorrect = false;
+        this.q2.answer[0].text = "Answer 1";
+        this.q2.answer[1] = new Answer();
+        this.q2.answer[1].isCorrect = true;
+        this.q2.answer[1].text = "Answer 2";
+        Data data = new Data();
+        data.question = new Question[2];
+        data.question[0] = this.q1;
+        data.question[1] = this.q2;
         this.testQuestionSelector = new InOrderQuestionSelector(data);
     }
 

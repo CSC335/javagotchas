@@ -2,10 +2,10 @@ package com.jermowery.csc335.javagotchas.game;
 
 import com.jermowery.csc335.javagotchas.BuildConfig;
 import com.jermowery.csc335.javagotchas.gamedecider.GameDecider;
-import com.jermowery.csc335.javagotchas.gamedecider.TurnsTakenGameDecider;
 import com.jermowery.csc335.javagotchas.logic.Score;
 import com.jermowery.csc335.javagotchas.logic.UpdateState;
-import com.jermowery.csc335.javagotchas.questionselector.InOrderQuestionSelector;
+import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Answer;
+import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 import com.jermowery.csc335.javagotchas.questionselector.QuestionSelector;
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,16 +17,17 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Answer;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 
+import java.util.Observable;
 import java.util.Observer;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.intThat;
 import static org.mockito.Mockito.*;
 
 /**
@@ -35,8 +36,8 @@ import static org.mockito.Mockito.*;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, constants = BuildConfig.class)
 public class GameTest {
-    private Question q1;
     @Rule public MockitoRule rule = MockitoJUnit.rule();
+    private Question q1;
     @Mock private QuestionSelector mockQuestionSelector;
     @Mock private GameDecider mockGameDecider;
     @Mock private Score mockScore;
@@ -45,24 +46,21 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        this.q1 = Question.newBuilder()
-                .setId(0)
-                .setText("Question 0")
-                .setExplanation("Explanation 0")
-                .addAnswer(
-                        Answer.newBuilder()
-                                .setText("Answer 1")
-                                .setIsCorrect(true)
-                )
-                .addAnswer(
-                        Answer.newBuilder()
-                                .setText("Answer 2")
-                                .setIsCorrect(false)
-                ).build();
+        this.q1 = new Question();
+        this.q1.id = 0;
+        this.q1.text = "Question 0";
+        this.q1.explanation = "Explanation 0";
+        this.q1.answer = new Answer[2];
+        this.q1.answer[0] = new Answer();
+        this.q1.answer[0].isCorrect = true;
+        this.q1.answer[0].text = "Answer 1";
+        this.q1.answer[1] = new Answer();
+        this.q1.answer[1].isCorrect = false;
+        this.q1.answer[1].text = "Answer 2";
 
         when(mockQuestionSelector.moveToNextQuestion()).thenReturn(mockQuestionSelector);
         when(mockQuestionSelector.moveToPreviousQuestion()).thenReturn(mockQuestionSelector);
-        when(mockQuestionSelector.getCurrentQuestion()).thenReturn(Question.getDefaultInstance());
+        when(mockQuestionSelector.getCurrentQuestion()).thenReturn(new Question());
         when(mockScore.getMaxScore()).thenReturn(10);
         when(mockScore.getCurrentScore()).thenReturn(0);
         when(mockGameDecider.isOver(anyInt())).thenReturn(false);
@@ -122,7 +120,7 @@ public class GameTest {
     public void testGetCurrentQuestionInitial() {
         // Move to next question first because at construction the mock value is not used
         testGame.goToNextQuestion();
-        assertThat(testGame.getCurrentQuestion()).isEqualTo(Question.getDefaultInstance());
+        assertThat(testGame.getCurrentQuestion().toString()).isEqualTo(new Question().toString());
     }
 
     @Test
@@ -145,7 +143,7 @@ public class GameTest {
         // Move to the next question because at construction the game has a null valuie for the question
         testGame.goToNextQuestion();
         testGame.selectAnswer(0);
-        ArgumentMatcher<Integer> isPositive = new ArgumentMatcher() {
+        ArgumentMatcher<Integer> isPositive = new ArgumentMatcher<Integer>() {
             @Override
             public boolean matches(Object argument) {
                 return (int)argument > 0;
@@ -174,14 +172,14 @@ public class GameTest {
     public void testGoToNextQuestionAtEndDoesNotUpdateObervers() {
         when(mockGameDecider.isOver(anyInt())).thenReturn(true);
         testGame.goToNextQuestion();
-        verify(mockObserver, never()).update(anyObject(), anyObject());
+        verify(mockObserver, never()).update(any(Observable.class), anyObject());
     }
 
     @Test
     public void testGoToPreviousQuestionDoesNotUpdateObserversWhenSelectorReturnsNull() {
         when(mockQuestionSelector.moveToPreviousQuestion()).thenReturn(null);
         testGame.goToPreviousQuestion();
-        verify(mockObserver, never()).update(anyObject(), anyObject());
+        verify(mockObserver, never()).update(any(Observable.class), anyObject());
     }
 
     @Test
