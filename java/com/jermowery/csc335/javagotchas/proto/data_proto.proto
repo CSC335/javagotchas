@@ -1,0 +1,19 @@
+syntax = "proto2";
+option java_package = "com.jermowery.csc335.javagotchas.proto";
+option java_outer_classname = "DataProto";
+
+message Data {
+	repeated Question question = 1;
+}
+
+message Question {
+	optional int32 id = 1;
+	optional string text = 2;
+	repeated Answer answer = 3;
+	optional string explanation = 4;
+}
+
+message Answer {
+	optional string text = 1;
+	optional bool is_correct = 2;
+}
