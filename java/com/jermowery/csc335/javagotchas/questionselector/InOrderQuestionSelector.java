@@ -1,6 +1,5 @@
 package com.jermowery.csc335.javagotchas.questionselector;
 
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 

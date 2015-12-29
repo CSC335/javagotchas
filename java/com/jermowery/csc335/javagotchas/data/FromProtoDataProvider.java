@@ -1,7 +1,7 @@
 package com.jermowery.csc335.javagotchas.data;
 
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import com.google.common.io.ByteStreams;
+import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -57,7 +57,7 @@ public class DataProviderFactoryTest {
         Data actual = new FromProtoDataProvider(is).getData();
         assertThat(actual.toString()).isEqualTo(data.toString());
         is = new ByteArrayInputStream(new byte[1]);
-        actual = DataProviderFactory.getDefaultDataProvider(is).getData();
+        actual = DataProviderFactory.getDataProvider(is).getData();
         assertThat(actual).isNull();
     }
 

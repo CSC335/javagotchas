@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">javagotchas</string>
+    <string name="game_decider_type">game_decider_type</string>
+    <string name="question_selector_type">question_selector_type</string>
 </resources>

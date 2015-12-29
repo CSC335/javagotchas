@@ -7,7 +7,7 @@ import java.io.InputStream;
  */
 public class DataProviderFactory {
 
-    public static DataProvider getDefaultDataProvider(InputStream ios) {
+    public static DataProvider getDataProvider(InputStream ios) {
         return new FromProtoDataProvider(ios);
     }
 }

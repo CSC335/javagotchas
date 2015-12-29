@@ -23,6 +23,7 @@ public class RandomQuestionSelectorTest {
     private Question q1;
     private Question q2;
     private Data data;
+
     @Before
     public void setUp() {
         this.q1 = new Question();

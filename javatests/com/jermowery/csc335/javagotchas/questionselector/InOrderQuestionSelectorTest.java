@@ -21,6 +21,7 @@ public class InOrderQuestionSelectorTest {
     private Question q1;
     private Question q2;
     private QuestionSelector testQuestionSelector;
+
     @Before
     public void setUp() {
         this.q1 = new Question();

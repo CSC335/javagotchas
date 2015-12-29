@@ -1,9 +1,11 @@
 package com.jermowery.csc335.javagotchas.logic;
 
+import java.io.Serializable;
+
 /**
  * Created by jeremy on 12/19/15.
  */
-public class Score {
+public class Score implements Serializable {
     private static final int MIN_MAX_SCORE = 0;
     private int maxScore;
     private int currentScore;

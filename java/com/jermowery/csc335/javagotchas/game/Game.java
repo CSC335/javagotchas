@@ -3,16 +3,16 @@ package com.jermowery.csc335.javagotchas.game;
 import com.jermowery.csc335.javagotchas.gamedecider.GameDecider;
 import com.jermowery.csc335.javagotchas.logic.Score;
 import com.jermowery.csc335.javagotchas.logic.UpdateState;
-import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 import com.jermowery.csc335.javagotchas.questionselector.QuestionSelector;
 
+import java.io.Serializable;
 import java.util.Observable;
 
 /**
  * Created by jeremy on 12/18/15.
  */
-public class Game extends Observable {
+public class Game extends Observable implements Serializable {
     private static final int SCORE_DELTA = 1;
     private QuestionSelector questionSelector;
     private Question currentQuestion;

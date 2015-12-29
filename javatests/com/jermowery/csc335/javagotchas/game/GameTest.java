@@ -36,13 +36,19 @@ import static org.mockito.Mockito.*;
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, constants = BuildConfig.class)
 public class GameTest {
-    @Rule public MockitoRule rule = MockitoJUnit.rule();
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
     private Question q1;
-    @Mock private QuestionSelector mockQuestionSelector;
-    @Mock private GameDecider mockGameDecider;
-    @Mock private Score mockScore;
-    @Mock private Observer mockObserver;
-    @InjectMocks private Game testGame;
+    @Mock
+    private QuestionSelector mockQuestionSelector;
+    @Mock
+    private GameDecider mockGameDecider;
+    @Mock
+    private Score mockScore;
+    @Mock
+    private Observer mockObserver;
+    @InjectMocks
+    private Game testGame;
 
     @Before
     public void setUp() {
@@ -146,7 +152,7 @@ public class GameTest {
         ArgumentMatcher<Integer> isPositive = new ArgumentMatcher<Integer>() {
             @Override
             public boolean matches(Object argument) {
-                return (int)argument > 0;
+                return (int) argument > 0;
             }
         };
         verify(mockScore).incrementScore(intThat(isPositive));

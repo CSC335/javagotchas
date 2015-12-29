@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+option java_package = "com.jermowery.csc335.javagotchas.proto";
+
+option java_outer_classname = "GameSettingsProto";
+
+message GameSettings {
+    optional QuestionSelectorType questionSelectorType = 1;
+    optional GameDeciderType gameDeciderType = 2;
+}
+
+enum QuestionSelectorType {
+    RANDOM = 1;
+    IN_ORDER = 2;
+}
+
+enum GameDeciderType {
+    TURNS = 1;
+    UNENDING = 2;
+}

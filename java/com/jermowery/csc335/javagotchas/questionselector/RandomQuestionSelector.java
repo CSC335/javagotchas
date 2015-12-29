@@ -11,6 +11,7 @@ import java.util.Random;
 public class RandomQuestionSelector extends QuestionSelector {
     private Random random;
     private int currentIndex;
+
     public RandomQuestionSelector(Data data, Random random) {
         super(data);
         this.random = random;
