@@ -29,6 +29,7 @@ public class Game extends Observable implements Serializable {
     }
 
     public void selectAnswer(int index) {
+        this.numTurnsTaken++;
         UpdateState state;
         if (this.currentQuestion.answer[index].isCorrect) {
             state = UpdateState.CORRECT_ANSWER;
@@ -42,7 +43,6 @@ public class Game extends Observable implements Serializable {
 
     public void goToNextQuestion() {
         if (!this.isOver()) {
-            this.numTurnsTaken++;
             this.currentQuestion = this.questionSelector.moveToNextQuestion().getCurrentQuestion();
             this.setChanged();
             this.notifyObservers(UpdateState.CHANGE_QUESTION);
@@ -50,7 +50,7 @@ public class Game extends Observable implements Serializable {
     }
 
     public void goToPreviousQuestion() {
-        if (this.questionSelector.moveToPreviousQuestion() != null) {
+        if (!this.isOver()) {
             this.currentQuestion = this.questionSelector.moveToPreviousQuestion().getCurrentQuestion();
             this.setChanged();
             this.notifyObservers(UpdateState.CHANGE_QUESTION);
@@ -71,6 +71,16 @@ public class Game extends Observable implements Serializable {
 
     public Question getCurrentQuestion() {
         return this.currentQuestion;
+    }
+
+    public void goToQuestion(int index) {
+        this.currentQuestion = this.questionSelector.goToQuestion(index).getCurrentQuestion();
+        this.setChanged();
+        this.notifyObservers(UpdateState.CHANGE_QUESTION);
+    }
+
+    public int getTotalNumberOfQuestions() {
+        return this.questionSelector.getTotalNumberOfQuestions();
     }
 
 

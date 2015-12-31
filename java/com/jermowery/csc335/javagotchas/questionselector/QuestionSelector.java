@@ -24,4 +24,10 @@ public abstract class QuestionSelector implements Serializable {
     public abstract QuestionSelector moveToPreviousQuestion();
 
     public abstract Question getCurrentQuestion();
+
+    public abstract QuestionSelector goToQuestion(int index);
+
+    public int getTotalNumberOfQuestions() {
+        return this.data.question.length;
+    }
 }

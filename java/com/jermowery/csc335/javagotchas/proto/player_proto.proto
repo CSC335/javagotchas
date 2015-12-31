@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+option java_package = "com.jermowery.csc335.javagotchas.proto";
+
+option java_outer_classname = "PlayerProto";
+
+message PlayerStats {
+    optional TurnsGameStats turnsGameStats = 1;
+}
+
+message TurnsGameStats {
+    optional int32 questionsCorrect = 1;
+    optional int32 questionsAttempted = 2;
+    optional int32 questionsIncorrect = 3;
+}

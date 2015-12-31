@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:weightSum="1" android:columnCount="1" android:rowCount="3">
+                android:layout_height="match_parent" android:weightSum="1">
 
     <ProgressBar
             style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/loadingBar"
-            android:layout_alignParentTop="true" android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" android:layout_alignParentBottom="true" android:indeterminate="true"
-            android:visibility="invisible"/>
+            android:indeterminate="true"
+            android:visibility="invisible" android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:weightSum="1" android:visibility="visible"
+                    android:id="@+id/gameGroup">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="282dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="questionText"
+                android:id="@+id/questionText" android:layout_column="0"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" android:padding="5dp"/>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:weightSum="1" android:id="@+id/answerGroup"
+                        android:layout_below="@+id/questionText">
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="answer1"
+                    android:id="@+id/answer1" android:layout_column="0" android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" android:layout_alignParentStart="true"/>"
+            android:layout_centerVertical="true" android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" android:layout_gravity="center_vertical"/>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer2"
+                    android:id="@+id/answer2" android:layout_column="0"
+                    android:layout_below="@+id/answer1" android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"/>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer3"
+                    android:id="@+id/answer3" android:layout_column="0"
+                    android:layout_below="@+id/answer2" android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true" android:visibility="invisible"/>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer4"
+                    android:id="@+id/answer4" android:layout_column="0"
+                    android:layout_below="@+id/answer3" android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true" android:visibility="invisible"/>
+        </RelativeLayout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:weightSum="1" android:id="@+id/navigationGroup"
+                        android:layout_alignParentStart="true" android:layout_alignParentTop="true">
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&lt;---"
+                    android:id="@+id/previousQuestionButton" android:layout_alignParentStart="true"
+                    android:layout_marginTop="41dp" android:layout_alignParentBottom="true"
+                    android:visibility="invisible"/>
+            <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/questionSelector"
+                    android:spinnerMode="dropdown"
+                    android:clickable="true"
+                    android:visibility="invisible" android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/previousQuestionButton"
+                    android:layout_centerHorizontal="true"
+                    android:dropDownWidth="75dp"
+                    android:minWidth="75dp"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--->"
+                    android:id="@+id/nextQuestionButton" android:layout_alignTop="@+id/previousQuestionButton"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/questionSelector"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
 </RelativeLayout>

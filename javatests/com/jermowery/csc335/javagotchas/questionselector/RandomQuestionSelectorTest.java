@@ -54,10 +54,10 @@ public class RandomQuestionSelectorTest {
         data.question[1] = this.q2;
     }
 
-    @Test
-    public void testMoveToPreviousQuestionInitialNull() {
+    @Test(expected = UnsupportedOperationException.class)
+    public void testMoveToPreviousQuestionInitialThrowsException() {
         QuestionSelector testQuestionSelector = new RandomQuestionSelector(this.data, new Random());
-        assertThat(testQuestionSelector.moveToPreviousQuestion()).isNull();
+        assertThat(testQuestionSelector.moveToPreviousQuestion()).isNotNull();
     }
 
     @Test
@@ -88,9 +88,15 @@ public class RandomQuestionSelectorTest {
         assertThat(testQuestionSelector.moveToNextQuestion().getCurrentQuestion()).isEqualTo(this.q2);
     }
 
-    @Test
+    @Test(expected = UnsupportedOperationException.class)
     public void testMoveToPreviousAfterMoveToNext() {
         QuestionSelector testQuestionSelector = new RandomQuestionSelector(this.data, new Random());
-        assertThat(testQuestionSelector.moveToNextQuestion().moveToPreviousQuestion()).isNull();
+        assertThat(testQuestionSelector.moveToNextQuestion().moveToPreviousQuestion()).isNotNull();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testGoToQuestionThrowsException() {
+        QuestionSelector testQuestionSelector = new RandomQuestionSelector(this.data, new Random());
+        assertThat(testQuestionSelector.goToQuestion(0)).isNotNull();
     }
 }

@@ -26,11 +26,16 @@ public class RandomQuestionSelector extends QuestionSelector {
 
     @Override
     public QuestionSelector moveToPreviousQuestion() {
-        return null;
+        throw new UnsupportedOperationException("Move to previous question not supported by RandomQuestionSelector.");
     }
 
     @Override
     public Question getCurrentQuestion() {
         return this.getData().question[this.currentIndex];
+    }
+
+    @Override
+    public QuestionSelector goToQuestion(int index) {
+        throw new UnsupportedOperationException("Go to a question by index not supported by RandomQuestionSelector.");
     }
 }

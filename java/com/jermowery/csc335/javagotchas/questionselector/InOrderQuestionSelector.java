@@ -30,4 +30,14 @@ public class InOrderQuestionSelector extends QuestionSelector {
     public Question getCurrentQuestion() {
         return this.getData().question[this.currentIndex];
     }
+
+    @Override
+    public QuestionSelector goToQuestion(int index) {
+        if (index >= 0 && index < this.getData().question.length) {
+            this.currentIndex = index;
+        } else {
+            throw new IllegalArgumentException("Index must be >= 0 < " + this.getData().question.length + ".");
+        }
+        return this;
+    }
 }

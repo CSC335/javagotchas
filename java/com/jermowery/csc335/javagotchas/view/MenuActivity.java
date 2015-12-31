@@ -37,7 +37,7 @@ public class MenuActivity extends Activity {
     public void onViewQuestionButtonClick(View view) {
         MenuActivity.this.gameSettings.questionSelectorType = GameSettingsProto.IN_ORDER;
         MenuActivity.this.gameSettings.gameDeciderType = GameSettingsProto.UNENDING;
-        startGameActivity(GameActivity.class);
+        startGameActivity(ViewGameActivity.class);
     }
 
     public void startGameActivity(Class<? extends GameActivity> activity) {

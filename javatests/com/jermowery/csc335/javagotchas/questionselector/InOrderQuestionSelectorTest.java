@@ -113,5 +113,21 @@ public class InOrderQuestionSelectorTest {
         assertThat(this.testQuestionSelector.moveToPreviousQuestion().moveToNextQuestion().getCurrentQuestion())
                 .isEqualTo(q1);
     }
+
+    @Test
+    public void testGoToQuestionValidIndex() {
+        assertThat(this.testQuestionSelector.goToQuestion(1)).isEqualTo(testQuestionSelector);
+        assertThat(this.testQuestionSelector.getCurrentQuestion().toString()).isEqualTo(this.q2.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGoToQuestionTooSmallIndex() {
+        this.testQuestionSelector.goToQuestion(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGoToQuestionTooLargeIndex() {
+        this.testQuestionSelector.goToQuestion(9999);
+    }
 }
 

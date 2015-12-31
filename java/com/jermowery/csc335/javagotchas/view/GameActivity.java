@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutionException;
  */
 public abstract class GameActivity extends Activity implements Observer {
     private static final String DATA_FILE_NAME = "data";
-    private Game game;
+    protected Game game;
     private AsyncTask<GameSettings, Void, Game> dataTask;
 
     @Override
@@ -40,17 +40,16 @@ public abstract class GameActivity extends Activity implements Observer {
         gameSettings.questionSelectorType = receivingIntent.getIntExtra(getString(R.string.question_selector_type), 1);
         this.dataTask = new DataOperation();
         this.dataTask.execute(gameSettings);
-
-    }
-
-    protected void getGame() {
         try {
-            dataTask.get();
+            this.game = this.dataTask.get();
+            this.game.addObserver(this);
+            this.startGame();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
     }
 
     protected abstract void startGame();
@@ -82,10 +81,7 @@ public abstract class GameActivity extends Activity implements Observer {
         @Override
         protected void onPostExecute(Game game) {
             super.onPostExecute(game);
-            GameActivity.this.game = game;
-            GameActivity.this.game.addObserver(GameActivity.this);
             findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
-            GameActivity.this.startGame();
         }
     }
 }

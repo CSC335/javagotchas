@@ -66,7 +66,7 @@ public class GameTest {
 
         when(mockQuestionSelector.moveToNextQuestion()).thenReturn(mockQuestionSelector);
         when(mockQuestionSelector.moveToPreviousQuestion()).thenReturn(mockQuestionSelector);
-        when(mockQuestionSelector.getCurrentQuestion()).thenReturn(new Question());
+        when(mockQuestionSelector.getCurrentQuestion()).thenReturn(this.q1);
         when(mockScore.getMaxScore()).thenReturn(10);
         when(mockScore.getCurrentScore()).thenReturn(0);
         when(mockGameDecider.isOver(anyInt())).thenReturn(false);
@@ -90,10 +90,15 @@ public class GameTest {
     }
 
     @Test
-    public void testGetNumTurnsTakenIncrementsOnGoToNextQuestion() {
+    public void testGetNumTurnsTakenIncrementsOnSelectAnswer() {
         assertThat(testGame.getNumTurnsTaken()).isEqualTo(0);
         testGame.goToNextQuestion();
+        testGame.selectAnswer(0);
         assertThat(testGame.getNumTurnsTaken()).isEqualTo(1);
+        testGame.goToNextQuestion();
+        assertThat(testGame.getNumTurnsTaken()).isEqualTo(1);
+        testGame.selectAnswer(1);
+        assertThat(testGame.getNumTurnsTaken()).isEqualTo(2);
         testGame.goToNextQuestion();
         assertThat(testGame.getNumTurnsTaken()).isEqualTo(2);
     }
@@ -115,10 +120,10 @@ public class GameTest {
         verify(mockQuestionSelector, never()).moveToPreviousQuestion();
         verify(mockQuestionSelector).getCurrentQuestion();
         testGame.goToPreviousQuestion();
-        verify(mockQuestionSelector, times(2)).moveToPreviousQuestion();
+        verify(mockQuestionSelector, times(1)).moveToPreviousQuestion();
         verify(mockQuestionSelector, times(2)).getCurrentQuestion();
         testGame.goToPreviousQuestion();
-        verify(mockQuestionSelector, times(4)).moveToPreviousQuestion();
+        verify(mockQuestionSelector, times(2)).moveToPreviousQuestion();
         verify(mockQuestionSelector, times(3)).getCurrentQuestion();
     }
 
@@ -126,7 +131,7 @@ public class GameTest {
     public void testGetCurrentQuestionInitial() {
         // Move to next question first because at construction the mock value is not used
         testGame.goToNextQuestion();
-        assertThat(testGame.getCurrentQuestion().toString()).isEqualTo(new Question().toString());
+        assertThat(testGame.getCurrentQuestion().toString()).isEqualTo(q1.toString());
     }
 
     @Test
@@ -182,10 +187,16 @@ public class GameTest {
     }
 
     @Test
-    public void testGoToPreviousQuestionDoesNotUpdateObserversWhenSelectorReturnsNull() {
-        when(mockQuestionSelector.moveToPreviousQuestion()).thenReturn(null);
+    public void testGoToPreviousQuestionAtEndDoesNotUpdateObervers() {
+        when(mockGameDecider.isOver(anyInt())).thenReturn(true);
         testGame.goToPreviousQuestion();
         verify(mockObserver, never()).update(any(Observable.class), anyObject());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testGoToPreviousQuestionThrowsExceptionWhenSelectorDoesNotSupportPrevious() {
+        when(mockQuestionSelector.moveToPreviousQuestion()).thenThrow(UnsupportedOperationException.class);
+        testGame.goToPreviousQuestion();
     }
 
     @Test
@@ -208,6 +219,13 @@ public class GameTest {
         testGame.goToNextQuestion();
         testGame.selectAnswer(1);
         verify(mockObserver).update(eq(testGame), eq(UpdateState.INCORRECT_ANSWER));
+    }
+
+    @Test
+    public void testGetTotalNumberOfQuestionsDelegatesToQuestionSelector() {
+        when(mockQuestionSelector.getTotalNumberOfQuestions()).thenReturn(12);
+        assertThat(testGame.getTotalNumberOfQuestions()).isEqualTo(12);
+        verify(mockQuestionSelector).getTotalNumberOfQuestions();
     }
 
 }
