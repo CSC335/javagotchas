@@ -1,34 +1,34 @@
 
-u,All Java keywords are written in lower case.
-true
-false"0No keywords in Java start with a capital letter.
-¡&A method name can start with a number.	
-false
-true"ÅMethod and variable names can't start with a number, although they can contain numbers. myMethod2() is legal; 2myMethod() is not.
-Ü!A variable name can start with $.
+u,All Java keywords are written in lower case.
 false
-true"LMethods and variables can start with a $ character, but its not recommended.
-˝
-TRUE, FALSE
-true, false, 1,0
+true"0No keywords in Java start with a capital letter.
+¡&A method name can start with a number.
+true	
+false"ÅMethod and variable names can't start with a number, although they can contain numbers. myMethod2() is legal; 2myMethod() is not.
+Ü!A variable name can start with $.
+true
+false"LMethods and variables can start with a $ character, but its not recommended.
+≠.Which of these are legal values for a boolean?
 TRUE, FALSE, true, false
-1,0
+1,0
+true, false, 1,0
+TRUE, FALSE
 true, false"°Unlike C/C++, booleans in Java are represented with the literals true and false. You can't substitute integers such as 1 and 0 where a boolean value is expected.
-w What is the bit-depth of a char?	
-32 bits
+w What is the bit-depth of a char?
 16 bits
 8 bits
-7 bits"%Chars in Java are all 16-bit Unicode.
-Ö What is the bit-depth of a byte?
-7 bits
+7 bits	
+32 bits"%Chars in Java are all 16-bit Unicode.
+Ö What is the bit-depth of a byte?
 
-8 bits"IBytes are always 8 bits. The left-most bit is used to represent the sign.
+8 bits
+7 bits"IBytes are always 8 bits. The left-most bit is used to represent the sign.
 Ÿ1A floating point literal in Java is treated as a:
+Float
 float
 
 double
-Double
-Float"zFloating point literals (example: 2.27) in Java are automatically typed as doubles unless you add an "f" (example: 2.27f).
+Double"zFloating point literals (example: 2.27) in Java are automatically typed as doubles unless you add an "f" (example: 2.27f).
 °vWhen you pass a reference to an array as an argument to a method call, you pass a new reference to the original array.
 false
 true"ëAn array is an object, and Java always passes a copy of the reference to the original object. Both references now point to the same array object.
@@ -45,46 +45,46 @@ Yes always"eThink of a call to System.gc( ) as a... suggestion. Garbage collecti
 ÿ:Assume x = 2 and y = 4. What is the result of (!( y > x ))
 true	
 false"ÑThis test asks if the expression (y is greater than 2) is NOT true... and that's false. y IS greater than 2, so the result is false.
-´;Assume x = 6 and y = 7. What is the result of (!( y == x ))
-false
-true"WThe test asks if the primitive values of y and x are NOT equal in value, which is true.
-•GAssume: byte a = 3; byte b = 2; What is the result of: byte c = a + b ;
-runtime exception
-c == 5
-compiler error
-c = 3"õThe result of arithmetic is always at LEAST an int, so the compiler will ask for an explicit cast: byte c = (byte)( a + b ); even though a and b are bytes.
+´;Assume x = 6 and y = 7. What is the result of (!( y == x ))
+true
+false"WThe test asks if the primitive values of y and x are NOT equal in value, which is true.
+•GAssume: byte a = 3; byte b = 2; What is the result of: byte c = a + b ;
+c = 3
+runtime exception
+compiler error
+c == 5"õThe result of arithmetic is always at LEAST an int, so the compiler will ask for an explicit cast: byte c = (byte)( a + b ); even though a and b are bytes.
 ¿(Can you compare a boolean to an integer?
 Yes
 No"ÇNot in Java. A boolean has a value of true or false, not 1 and 0, or 0 and anything else. You just can't do it (watch out C folks)
 ËWhat is "instanceof" ?
 a method in Object
 an operator"§The "instanceof" operator -- if ( A instanceof B) -- tests if an object A is either an instance of B, an instance of a subclass of B, or implements the B interface.
-ƒdInteger a = new Integer(5); Integer b = new Integer(5); What is the result of running: if ( a == b )
-runtime exception
-true
-compiler error	
-false"üThe == operator looks ONLY for a match of bits. For two different objects, the only way == can be true is if both reference variables point to the SAME object.
+ƒdInteger a = new Integer(5); Integer b = new Integer(5); What is the result of running: if ( a == b )
+compiler error
+runtime exception	
+false
+true"üThe == operator looks ONLY for a match of bits. For two different objects, the only way == can be true is if both reference variables point to the SAME object.
 Å+Can a top-level class be marked as private?
 Yes
 No"¿If a class was private... who could use it? For a normal, top-level class, the only access modifiers that make sense are public and default (package). Only nested inner classes can be private.
-ö-Can a top-level class be marked as protected?
-No
-Yes"◊A top-level class can ONLY be marked public or default (package). The protected access is just for member variables and methods, and allows subclasses outside the superclass package to inherit the protected members.
+ö-Can a top-level class be marked as protected?
+Yes
+No"◊A top-level class can ONLY be marked public or default (package). The protected access is just for member variables and methods, and allows subclasses outside the superclass package to inherit the protected members.
 Ünmethods which are marked protected can be called on any subclass of the class in which the method is declared.
 false
 true"˛Protected members (methods and data) can be inherited by subclasses, including those outside the package. The only difference between default (no modifier) and protected, is that protected extends visibility outside the package... but ONLY to subclasses.
-íCCan a private method of a superclass be declared within a subclass?
-No
-Yes"πTrick question! Private methods can NOT be overriden, but they CAN be re-declared/redefined in the subclass, and called directly on the subclass object. But polymorphism will not apply.
-ê0Can an abstract class have non-abstract methods?
+íCCan a private method of a superclass be declared within a subclass?
 Yes
-No"KUnlike interfaces, abstract classes CAN provide implementations of methods.
+No"πTrick question! Private methods can NOT be overriden, but they CAN be re-declared/redefined in the subclass, and called directly on the subclass object. But polymorphism will not apply.
+ê0Can an abstract class have non-abstract methods?
+No
+Yes"KUnlike interfaces, abstract classes CAN provide implementations of methods.
 §/Can a non-abstract class have abstract methods?
 Yes
 No"`Even a single abstract method tells the compiler that the whole class MUST be declared abstract.
-ˆöIf a non-abstract class X inherits abstract methods from its abstract parent class Y, is the X class required to implement the inherited abstract methods?
-Yes
-No"≈Any concrete (non-abstract) class MUST provide bodies (implementations) for the abstract methods it inherits. Otherwise, the compiler will insist that the new subclass itself be marked as abstract.
+ˆöIf a non-abstract class X inherits abstract methods from its abstract parent class Y, is the X class required to implement the inherited abstract methods?
+No
+Yes"≈Any concrete (non-abstract) class MUST provide bodies (implementations) for the abstract methods it inherits. Otherwise, the compiler will insist that the new subclass itself be marked as abstract.
 ∆~If a class declares that it implements an interface (class A implements B), must class A implement the methods of interface B?
 Under ALL circumstances
 Unless A is abstract"åIf a class is abstract, and it implements an interface, it can leave the interface implementations up to a concrete (non-abstract) subclass.
@@ -100,72 +100,72 @@ Yes always"eThink of a call to System.gc( ) as a... suggestion. Garbage collecti
 Ÿ;Can you compile an if construct without using curly braces?
 No
 Yes"àIf you do not use curly braces for an if block, then only the first statement following the if ( ) will run if the if condition is true.
- *What goes in the first part of a for loop?
+ *What goes in the first part of a for loop?
+boolean test
 init statement
-iteration expression
-boolean test"^The init statement must be the first part of the for declaration -- example: for (int i = 7;;)
-»;Is this legal? int i ; for ( i = 4, int t = 6; i < 0; i++ )
-Yes
-No"xYou can declare or initialize more than one variable in a for loop, but you can't mix declarations with initializations.
-πâIn a for loop, the continue statement will cause execution to jump out of the loop and continue on at the first statement below the loop.	
-false
-true"ïContinue really means "continue with the next iteration", so execution of the current iteration stops, and execution continues at the next iteration.
-ë ÇAn inner class must be defined within the opening and closing braces of a class, but outside any method -- just like data members.
+iteration expression"^The init statement must be the first part of the for declaration -- example: for (int i = 7;;)
+»;Is this legal? int i ; for ( i = 4, int t = 6; i < 0; i++ )
+No
+Yes"xYou can declare or initialize more than one variable in a for loop, but you can't mix declarations with initializations.
+πâIn a for loop, the continue statement will cause execution to jump out of the loop and continue on at the first statement below the loop.
 true	
-false"uAn inner class can be defined inside a method, or even inside a parameter to a method! (with anonymous inner classes)
+false"ïContinue really means "continue with the next iteration", so execution of the current iteration stops, and execution continues at the next iteration.
+ë ÇAn inner class must be defined within the opening and closing braces of a class, but outside any method -- just like data members.	
+false
+true"uAn inner class can be defined inside a method, or even inside a parameter to a method! (with anonymous inner classes)
 ‰!2A class defined within a parameter to a method is:
-	anonymous	
-illegal
-static"áA class defined within a method parameter (typically used with event listener classes) is considered anonymous. The object is created and alive, but the new class type has no name, so you can't create more instances of it except by going through that same method.
+	anonymous
+static	
+illegal"áA class defined within a method parameter (typically used with event listener classes) is considered anonymous. The object is created and alive, but the new class type has no name, so you can't create more instances of it except by going through that same method.
 ò"èwhen an object is created using new (), its constructor will not complete until all constructors higher on the inheritance tree have completed.
 true
 false"oRemember the rule: the parents must exist before the children, and this goes all the way up the ancestral tree.
 ÷#]the compiler will always insert a default, no-argument constructor into any class definition.	
 false
 true"`The compiler will ONLY insert a default constructor if you don't provide any constructor at all.
-±$åwhen you override a method, the overriding method in the subclass must not declare ANY new exceptions not declared by the overridden method.	
-false
-true"äThis rule only applies to "checked" exceptions -- the exceptions which are subclasses of Exception but not subclasses of RuntimeException.
-Ω%$Will this compile? float f = 27.24f;
-Yes
-No"ÉWithout the "f", Java will consider a floating point number to be a double, and the compiler will force you to do an explicit cast.
-}&As a literal, what is 27.24?
-a double	
-a float"BAll floating point literals are assumed to be doubles, not floats!
-∂'"Will this compile? int[] x = [27];
-No
-Yes"In Java you must create the array using: int[] x = new int[27] or by explicitly filling in the values: int[] x = {4,2,7,3,9,8};
-∞(IWhen an array is constructed, are its elements automatically initialized?
-Yes
-No"—All array elements are ALWAYS given default values, whether the array is a class, instance, or local variable. Primitives initialize to zero, booleans to false, chars to '\u0000' and object references to null.
-±)$Is this legal? int x[ ] = {2,7,4,9};
+±$åwhen you override a method, the overriding method in the subclass must not declare ANY new exceptions not declared by the overridden method.
+true	
+false"äThis rule only applies to "checked" exceptions -- the exceptions which are subclasses of Exception but not subclasses of RuntimeException.
+Ω%$Will this compile? float f = 27.24f;
 No
-Yes"xThis instantiation/initialization is allowed as a shortcut to creating a new array and assigning a value for each index.
-”*8Is this legal? public static void main ( String[] fred )
+Yes"ÉWithout the "f", Java will consider a floating point number to be a double, and the compiler will force you to do an explicit cast.
+}&As a literal, what is 27.24?	
+a float
+a double"BAll floating point literals are assumed to be doubles, not floats!
+∂'"Will this compile? int[] x = [27];
+Yes
+No"In Java you must create the array using: int[] x = new int[27] or by explicitly filling in the values: int[] x = {4,2,7,3,9,8};
+∞(IWhen an array is constructed, are its elements automatically initialized?
+No
+Yes"—All array elements are ALWAYS given default values, whether the array is a class, instance, or local variable. Primitives initialize to zero, booleans to false, chars to '\u0000' and object references to null.
+±)$Is this legal? int x[ ] = {2,7,4,9};
 Yes
-No"ÖYou can call the command-line argument variable whatever you like! And you can put the brackets [] before or after the variable name.
+No"xThis instantiation/initialization is allowed as a shortcut to creating a new array and assigning a value for each index.
+”*8Is this legal? public static void main ( String[] fred )
+No
+Yes"ÖYou can call the command-line argument variable whatever you like! And you can put the brackets [] before or after the variable name.
 ¿+>Assume x = 0 and y = 3. What is the value of x after: x = y++;
 3
-7
-4"kX gets the value of y, THEN y is incremented. The result would have been 4 if the expression was: x = ++y ;
-æ,;Given x = y--; Which of these will be true AFTER execution?
-x < y
-x == y	
+4
+7"kX gets the value of y, THEN y is incremented. The result would have been 4 if the expression was: x = ++y ;
+æ,;Given x = y--; Which of these will be true AFTER execution?
+x == y
+x < y	
 x > y"_y is assigned to x, then y is decremented. So by the end of the statement, x is greater than y.
-∑-&Integer literals are always what size?
-short - 16 bits
+∑-&Integer literals are always what size?
 int - 64 bits
-byte - 8 bits
-int - 32 bits
-int - 16 bits"2integer literals are always treated as 32-bit ints
+byte - 8 bits
+int - 16 bits
+int - 32 bits
+short - 16 bits"2integer literals are always treated as 32-bit ints
 ¿.NCan you use an increment unary operator on a byte? (example: byte b = 4; b++;)
-Never
-Yes
-With explicit cast"DYou don't need an explicit cast to use the increment unary operator.
-•/HWhat happens when you divide an integer by a variable with a value of 0?
-Compiles and runs
-Runtime exception
-Compiler error"òAt runtime you will get an ArithmeticException which is not checked for at compile time. Floats and doubles will NOT throw an exception if divided by 0.
+Never
+With explicit cast
+Yes"DYou don't need an explicit cast to use the increment unary operator.
+•/HWhat happens when you divide an integer by a variable with a value of 0?
+Compiler error
+Runtime exception
+Compiles and runs"òAt runtime you will get an ArithmeticException which is not checked for at compile time. Floats and doubles will NOT throw an exception if divided by 0.
 ﬁ0RWhat happens when you put this expression in your code: int x = 0; int y = 4 % x ;
 Runtime exception
 Compiler error
@@ -174,26 +174,26 @@ Yes always"eThink of a call to System.gc( ) as a... suggestion. Garbage collecti
 Runtime exception
 Compiler error
 Compiles and runs"ÅFloating point numbers don't produce a divide-by-zero ArithmeticException. They will give a result which is a Not a Number value.
-ü2ÅWhat happens when you bit shift by a number greater than or equal to the number of bits in the result? (eg. int c = 270; c >> 33)
-You get 270 >> 1
+ü2ÅWhat happens when you bit shift by a number greater than or equal to the number of bits in the result? (eg. int c = 270; c >> 33)
+	You get 0
 
-You get -1
-	You get 0"ÂShifting bits by a number greater than or equal to the number of bits in the result (eg. 32 bits for an int) will cause the value to be shifted by the number modulo the number of bits in the value (you shift by 33%32 which is 1).
-´3JWhat happens when you compare two primitives of different numerical types?
-Smaller type is promoted
-Must explicitly cast
-Compiler error"íJava promotes the smaller type to the wider of the types being compared. So when comparing a byte to an int, the byte is first promoted to an int.
-ã42Which of these is the Exclusive-OR (XOR) operator?
-^
-~
-&
+You get -1
+You get 270 >> 1"ÂShifting bits by a number greater than or equal to the number of bits in the result (eg. 32 bits for an int) will cause the value to be shifted by the number modulo the number of bits in the value (you shift by 33%32 which is 1).
+´3JWhat happens when you compare two primitives of different numerical types?
+Compiler error
+Must explicitly cast
+Smaller type is promoted"íJava promotes the smaller type to the wider of the types being compared. So when comparing a byte to an int, the byte is first promoted to an int.
+ã42Which of these is the Exclusive-OR (XOR) operator?
+&
+~
+^
 is the regular OR operator."#The ^ is the Exclusive-OR operator.
 Ô52x = false; y = true; What is the result of x && y?	
 false
 true"£"&&" is the short-circuit AND operator. If both values are true, the result is true, but Java won't bother to check the second condition if the first one is false.
-…60Can a method have more than one access modifier?
-Yes
-No"ÉMethods CAN have more than one modifier, but not more than one ACCESS modifier. Access modifiers are public, protected, private (and of course, default/package). Early versions of the JDK allowed a private protected access, but current versions prohibit this.
+…60Can a method have more than one access modifier?
+No
+Yes"ÉMethods CAN have more than one modifier, but not more than one ACCESS modifier. Access modifiers are public, protected, private (and of course, default/package). Early versions of the JDK allowed a private protected access, but current versions prohibit this.
 ∑7ICan a subclass access the private member variables of its own superclass?
 Yes
 No"YPrivate means "private to the class". Period. Kids (subclasses) get no special treatment.
@@ -212,18 +212,18 @@ You get -1
 ‚<dCan you automatically convert a long to an int if the long value is small enough to fit into an int?
 Yes
 No"ËA long has 64 bits while an int has 32. You can't implicitly squish a *potentially* big thing into a little thing. The compiler doesn't care if the long variable is holding a tiny value. It just looks for the possibility of trouble.
- =;Can you automatically/implicitly convert a char to a short?
-No
-Yes"zThey're the same bit-depth, but since chars are unsigned, they might have a higher positive value than a short can accept.
-µ>@Can you pass a short into a method call when an int is expected?
-No
-Yes"`Since a short will definitely fit into an int, the short is implicitly promoted. No cast needed.
+ =;Can you automatically/implicitly convert a char to a short?
+Yes
+No"zThey're the same bit-depth, but since chars are unsigned, they might have a higher positive value than a short can accept.
+µ>@Can you pass a short into a method call when an int is expected?
+Yes
+No"`Since a short will definitely fit into an int, the short is implicitly promoted. No cast needed.
 …?aGiven this code, what prints? boolean b = false; if ( b = true ) {   System.out.println("yes"); }
-"yes" prints
-nothing prints"Ω"Yes" prints because the expression ( b = true ) uses the assignment operator =, not the equality operator ==. So b is set to true, and the result is true so the if condition runs the code.
-’@gIf you do not use curly braces for a while loop body, what will execute if the while condition is true?	
-Nothing#
-First statement after while ( )"∑If there are no curly braces to set off a loop block, then just the first statement is executed as part of the condition and any statements following that are executed no matter what.
+nothing prints
+"yes" prints"Ω"Yes" prints because the expression ( b = true ) uses the assignment operator =, not the equality operator ==. So b is set to true, and the result is true so the if condition runs the code.
+’@gIf you do not use curly braces for a while loop body, what will execute if the while condition is true?#
+First statement after while ( )	
+Nothing"∑If there are no curly braces to set off a loop block, then just the first statement is executed as part of the condition and any statements following that are executed no matter what.
 ÈA}using a break in a for loop causes the loop to break out of the current iteration and jump to the next iteration of the loop.
 true	
 false"“The break statements means "break out of this structure completely!". So the current iteration and any other remaining iterations of the loop will not run. Execution moves to the first statement below the loop.
@@ -236,52 +236,52 @@ You get -1
 ˙D`if an exception is not caught, the finally block will run and the rest of the method is skipped.
 false
 true"ÄThe finally block will always run if an exception is thrown, and then the exception is immediately passed to the calling method.
-πE!An overloaded method MUST change:
-Return type
-Return type AND arg list
-Argument list"TAn overloaded method must change the argument list, but the return type is optional.
-€F:Overloaded methods are free to change the access modifier.
-true
-false"áAs long as the argument list is different, the overloaded method is also free to change both the return type and the access visibility.
-∂G#constructors can not be overloaded.	
-false
-true"zConstructors can be overloaded to allow the calling code to provide more (or less) information when the object is created.
-ÇHKAn inner class has free access to private member data of the outer classes.
+πE!An overloaded method MUST change:
+Argument list
+Return type AND arg list
+Return type"TAn overloaded method must change the argument list, but the return type is optional.
+€F:Overloaded methods are free to change the access modifier.
 false
-true"ùInner classes have a special relationship with the their outer (enclosing) classes, including access to private data of the outer class. For event listeners implemented as inner classes, this means you do NOT have to pass a reference to the outer class in to the constructor of the inner class. The inner class has something like an "outer this" ("outer this" is not a keyword, just the way inner classes behave).
-ˇI^Member (instance) variables are always assigned a default value if not explicitly initialized.
+true"áAs long as the argument list is different, the overloaded method is also free to change both the return type and the access visibility.
+∂G#constructors can not be overloaded.
+true	
+false"zConstructors can be overloaded to allow the calling code to provide more (or less) information when the object is created.
+ÇHKAn inner class has free access to private member data of the outer classes.
 true
-false"áMember variables are always given a default value -- numerical primitives get zero, chars get '\u0000', and object references get null.
-õJ^Automatic (local) variables are always assigned a default value if not explicitly initialized.	
-false
-true"£You don't have to initialize a local variable, but as soon as you try to use it, you will get a compiler error because local variables aren't given default values.
+false"ùInner classes have a special relationship with the their outer (enclosing) classes, including access to private data of the outer class. For event listeners implemented as inner classes, this means you do NOT have to pass a reference to the outer class in to the constructor of the inner class. The inner class has something like an "outer this" ("outer this" is not a keyword, just the way inner classes behave).
+ˇI^Member (instance) variables are always assigned a default value if not explicitly initialized.
+false
+true"áMember variables are always given a default value -- numerical primitives get zero, chars get '\u0000', and object references get null.
+õJ^Automatic (local) variables are always assigned a default value if not explicitly initialized.
+true	
+false"£You don't have to initialize a local variable, but as soon as you try to use it, you will get a compiler error because local variables aren't given default values.
 éKOWhen you pass a variable as an argument to a method call, what are you passing?
 the actual value
 a copy of the value"ãYou always get a copy of whatever is in the variable -- either a primitive or a reference. So for objects, you get a copy of the reference.
-ÀLTWhen you pass an object reference as an argument to a method call, what gets passed?
-a reference to a copy
-a copy of the reference
+ÀLTWhen you pass an object reference as an argument to a method call, what gets passed?
 the object itself
-the original reference"ãYou always get a copy of whatever is in the variable -- either a primitive or a reference. So for objects, you get a copy of the reference.
+the original reference
+a copy of the reference
+a reference to a copy"ãYou always get a copy of whatever is in the variable -- either a primitive or a reference. So for objects, you get a copy of the reference.
 ˜M`When using the right-shift operator (>>), what happens to the bits which move off the right end?
 They wrap around
 They're gone
 They're added to result"PBits moved off the end of any shift operation are just gone. History. Vaporized.
-∏N0x = true; y = true; What is the result of x ^ y?
+∏N0x = true; y = true; What is the result of x ^ y?	
+false
 compiler error
-true	
-false"]" ^ " is the Exclusive-OR operator -- it only returns true if just ONE of the values is true.
-ÏO1x = true; y = false; What is the result of x & y?	
-false
+true"]" ^ " is the Exclusive-OR operator -- it only returns true if just ONE of the values is true.
+ÏO1x = true; y = false; What is the result of x & y?
 true
-compiler error"è"&" is the AND operator. For a logical expression, the result will be true only if BOTH values are true. (For bitwise AND, both bits must be 1)
+compiler error	
+false"è"&" is the AND operator. For a logical expression, the result will be true only if BOTH values are true. (For bitwise AND, both bits must be 1)
 ÓPMCan one object access a private variable of another object of the same class?
 Yes
 No"ãPrivate means "private to the class", NOT "private to the object". So two objects of the same class could access each other's private data.
 ÄQÜFor object x to access a method of object y, when the method has no access modifier, object x MUST be an instance of a class which is:
-the same class as y
+the same class as y
+declared public
 In the same package as y
-declared public
 a subclass of y"óNo access modifier really means "default" access which really means "only to others in the package". But you'll never see a keyword/modifier "default".
 ÏR&static variables are implicitly final.
 true	
@@ -289,162 +289,162 @@ You get -1
 ìSEIs it legal to access a static method using an instance of the class?
 No
 Yes"∏Its legal to say anObject.aStaticMethod() but the preferred way is to use the class name - MyClass.aStaticMethod(), to make it obvious in your code that you're calling a static method.
-¨TGAre static methods allowed to access instance variables using this.var?
-No
-Yes"œWithin a static method, there is no 'this'! Since this refers to the current object -- the object whose method is executing -- 'this' makes no sense in a static method, since it doesn't belong to any object.
+¨TGAre static methods allowed to access instance variables using this.var?
+Yes
+No"œWithin a static method, there is no 'this'! Since this refers to the current object -- the object whose method is executing -- 'this' makes no sense in a static method, since it doesn't belong to any object.
 ·UrThe only things which can be defined inside a class and outside a method are instance variables and inner classes.
 true	
 false"’Besides instance variables and inner classes, you can also define static code blocks. The compiler combines static blocks and static variable initialization into one big method which runs when the class is loaded.
 –V&Can a constructor be declared private?
 Yes
 No"îSo how do you make an object...? Obviously you'd need a less restrictive method (say, public) which can be called to create and return a new object.
-πW'Can a constructor be declared abstract?
-Yes
-No"}Since a constructor is used solely to create a new instance, and an abstract class can NEVER be instanced, it makes no sense.
+πW'Can a constructor be declared abstract?
+No
+Yes"}Since a constructor is used solely to create a new instance, and an abstract class can NEVER be instanced, it makes no sense.
 ÀX%Can a constructor be declared static?
 Yes
 No"êConstructors are for creating new instance objects. Static methods are for non-instance code, so it makes no sense to have a static constructor.
 ˜YIs this legal? float f = 2;
 Yes
 No"∆The 2 is treated as an int literal, and since an int fits in a float, no explicit cast or 'f' is needed. If the literal was 2.0 (instead of 2), it would be treated as a double and would not compile.
-âZ1Can you automatically convert an int to a double?
-Yes
-No"CAny int can fit into a double-sized variable, so no cast is needed.
-“[HCan you pass a double to a method when the method's argument is a float?
-No
-Yes"uRegardless of the double value, a double-sized variable is too big to fit in a float, so it can't be implicitly cast.
-ë\RClass Y is a subclass of class X. Will this compile? Y myY = new Y(); X myX = myY;
-Yes
-No"©Any object can always be referenced by a variable which is of a superclass type... because the child/subclass object is guaranteed to have the methods of the superclass.
+âZ1Can you automatically convert an int to a double?
+No
+Yes"CAny int can fit into a double-sized variable, so no cast is needed.
+“[HCan you pass a double to a method when the method's argument is a float?
+Yes
+No"uRegardless of the double value, a double-sized variable is too big to fit in a float, so it can't be implicitly cast.
+ë\RClass Y is a subclass of class X. Will this compile? Y myY = new Y(); X myX = myY;
+No
+Yes"©Any object can always be referenced by a variable which is of a superclass type... because the child/subclass object is guaranteed to have the methods of the superclass.
 È]}using a break in a for loop causes the loop to break out of the current iteration and jump to the next iteration of the loop.	
 false
 true"“The break statements means "break out of this structure completely!". So the current iteration and any other remaining iterations of the loop will not run. Execution moves to the first statement below the loop.
-’^%Is this legal? int i = 0; if ( i ) {}
-Yes
-No"öThe only thing that can be an if (expression) is a boolean expression, and since in Java ints cannot be cast to booleans, if (anInteger) will not compile.
+’^%Is this legal? int i = 0; if ( i ) {}
+No
+Yes"öThe only thing that can be an if (expression) is a boolean expression, and since in Java ints cannot be cast to booleans, if (anInteger) will not compile.
 á_wIn a switch statement, the argument to the case label (case: argument) can be any variable which can fit within an int.
 true	
 false"wThe case argument must be either an int literal, or an int-compatible variable which is a constant (i.e. static final).
-Œ`ëIn a switch construct, once a matching case value is found, execution will continue through other case labels until it reaches a break statement.
-true
-false"¢Code executing as part of a case statement will just keep on running through other cases until/unless it reaches a break statement. This is called "fall through".
-ñaZIn a switch construct, the default statement must be placed after all the case statements.	
-false
-true"#The default can be placed anywhere.
-õbAll exceptions inherit from:
-java.lang.Exception
+Œ`ëIn a switch construct, once a matching case value is found, execution will continue through other case labels until it reaches a break statement.
+false
+true"¢Code executing as part of a case statement will just keep on running through other cases until/unless it reaches a break statement. This is called "fall through".
+ñaZIn a switch construct, the default statement must be placed after all the case statements.
+true	
+false"#The default can be placed anywhere.
+õbAll exceptions inherit from:
 java.lang.Throwable
-java.lang.Error"6The Exception hierarchy begins at java.lang.Throwable.
- cÉIf method A declares that it throws an exception and method B calls method A, then method B must ALWAYS declare the same exception.	
-false
-true"¨Method B does not have to declare the exception if it handles it (by providing an appropriate catch(theException), OR if the exception declared by A is a runtime exception.
+java.lang.Error
+java.lang.Exception"6The Exception hierarchy begins at java.lang.Throwable.
+ cÉIf method A declares that it throws an exception and method B calls method A, then method B must ALWAYS declare the same exception.
+true	
+false"¨Method B does not have to declare the exception if it handles it (by providing an appropriate catch(theException), OR if the exception declared by A is a runtime exception.
 ¯dÑClass A inherits from B. B includes a method with the same name, return type, and arguments as a method in A. This is an example of:
 Overloading
 
 Overriding"ÕAn overriding method must have the same name, return type, and arguments as the method in the superclass. It can't declare new or broader checked exceptions, and it also can't have more restrictive access.
-Ûe\a class can define two methods with the same name as long as the return types are different.
-true	
-false"~An overloaded method can change the return type, but return type alone is not enough -- it also must change the argument list.
-îfsan overriding method of a subclass can throw an ArithmeticException not thrown by the original (overridden) method.
-true
-false"áArithmeticException is a RuntimeException, so the rules about overriding methods not throwing new or broader exceptions does not apply.
+Ûe\a class can define two methods with the same name as long as the return types are different.	
+false
+true"~An overloaded method can change the return type, but return type alone is not enough -- it also must change the argument list.
+îfsan overriding method of a subclass can throw an ArithmeticException not thrown by the original (overridden) method.
+false
+true"áArithmeticException is a RuntimeException, so the rules about overriding methods not throwing new or broader exceptions does not apply.
 ﬂg[overloaded methods must not throw new checked exceptions not thrown by the original method.	
 false
 true"kThis would be true for overriding methods, but overloaded methods are free to throw new checked exceptions.
-ÃhQan inner class has free access to ALL member data of its enclosing (outer) class.
+ÃhQan inner class has free access to ALL member data of its enclosing (outer) class.
+true
+false"bAn inner class has a special relationship and can see even private member data of the outer class.
+Äi}It is not possible to have an instance of a non-static inner class before any instances of the outer class have been created.
 false
-true"bAn inner class has a special relationship and can see even private member data of the outer class.
-Äi}It is not possible to have an instance of a non-static inner class before any instances of the outer class have been created.
-true
-false"jA non-static inner class can ONLY exist as part of a relationship with an instance of its enclosing class.
-ÈjyThis is a legal way to create an instance of an inner class: OuterClass.InnerClass x = new OuterClass().new InnerClass();
-true
-false"÷It may look strange, but that syntax is how you can create an instance of an inner class when you don't yet have an instance of the outer class. An inner class must ALWAYS be tied to an instance of the outer class.
-†k`public class Outer {   int x ;   static class Inner {     void foo() {       x = 5 ;     }   } }
+true"jA non-static inner class can ONLY exist as part of a relationship with an instance of its enclosing class.
+ÈjyThis is a legal way to create an instance of an inner class: OuterClass.InnerClass x = new OuterClass().new InnerClass();
+false
+true"÷It may look strange, but that syntax is how you can create an instance of an inner class when you don't yet have an instance of the outer class. An inner class must ALWAYS be tied to an instance of the outer class.
+†k`public class Outer {   int x ;   static class Inner {     void foo() {       x = 5 ;     }   } }
+does not compile
 
-compiles
-does not compile"óA static inner class is treated as a top-level nested class, and has no reference -- no special relationship -- to any instance of the enclosing class.
-ƒlãClass B extends A. B overrides the doStuff() method inherited from A. Which methods gets called if you say: A myA = new B(); myA.doStuff();
-doStuff() in A
-compiler error
-runtime error
-doStuff() in B"ËJava's polymorphism causes instance methods to be bound (chosen) at runtime, not during compilation. At runtime, the overriding method of the 'actual' object (which is a B) is dynamically chosen, even though the reference type is A.
-òm]Are you allowed to have more than one top-level (non-inner) class definition per source file?
-No
-Yes"•You can have as many top-level classes in one source file as you like, but only one can be declared public and the source file name must match the public class name.
+compiles"óA static inner class is treated as a top-level nested class, and has no reference -- no special relationship -- to any instance of the enclosing class.
+ƒlãClass B extends A. B overrides the doStuff() method inherited from A. Which methods gets called if you say: A myA = new B(); myA.doStuff();
+doStuff() in B
+compiler error
+doStuff() in A
+runtime error"ËJava's polymorphism causes instance methods to be bound (chosen) at runtime, not during compilation. At runtime, the overriding method of the 'actual' object (which is a B) is dynamically chosen, even though the reference type is A.
+òm]Are you allowed to have more than one top-level (non-inner) class definition per source file?
+Yes
+No"•You can have as many top-level classes in one source file as you like, but only one can be declared public and the source file name must match the public class name.
 Ñn0Each source file must have a public class in it.
 No
 Yes"?You don't have to have any public classes in your source files.
 ”oIAssume the bit value of byte x is 00101011. What is the result of x >> 2;
 
+10101100
+
 11001010
-00001010
+00001010"^The right shift operator fills from the left with the value of the sign bit (in this case, 0).
+ÏpWAssume the bit pattern of byte x is: 10110001. What will the sign of x be after x >> 2;
+negative
 
-10101100"^The right shift operator fills from the left with the value of the sign bit (in this case, 0).
-ÏpWAssume the bit pattern of byte x is: 10110001. What will the sign of x be after x >> 2;
-
-positive
-negative"uThe right-shift operator fills all bits from the left with the same value as the original sign bit -- in this case 1.
-ÂqDWhat does the unsigned right-shift operator do to a negative number?
-keep it negative
-change its sign"rThe unsigned right-shift operator always fills from the left with zero, so the result will always become positive.
+positive"uThe right-shift operator fills all bits from the left with the same value as the original sign bit -- in this case 1.
+ÂqDWhat does the unsigned right-shift operator do to a negative number?
+change its sign
+keep it negative"rThe unsigned right-shift operator always fills from the left with zero, so the result will always become positive.
 ∫r+What is the result of 00110011 & 11110000 ?
 
 11110011
 
 00000000
 00110000"cThe bitwise AND operator, &, will result in bit values of 1 only if BOTH bits being compared are 1.
-Ès<The short-circuit operators work on boolean types, not bits.
-false
-true"ìShort-circuit operators work only on logical expressions; they make boolean tests more efficient by not testing both operands unless its necessary.
-∆t^Methods which have no access modifier can only be accessed by classes within the same package.
-false
-true"ONo access modifier means "default" which means "only to others in the package".
+Ès<The short-circuit operators work on boolean types, not bits.
+true
+false"ìShort-circuit operators work only on logical expressions; they make boolean tests more efficient by not testing both operands unless its necessary.
+∆t^Methods which have no access modifier can only be accessed by classes within the same package.
+true
+false"ONo access modifier means "default" which means "only to others in the package".
 ◊u[methods which are marked protected can be accessed only by classes within the same package.	
 false
 true"cProtected means "any subclass, regardless of package, can inherit these members -- methods or data"
-îv7Can a public method be overriden by a protected method?
-No
-Yes"HOverriding methods can NOT be more restrictive than the original method.
-‘wUmethods and variables can be declared as final, but a class cannot be declared final.	
-false
-true"fA final class is a class which can NOT be subclassed. Its the end-of-the-line in the inheritance tree.
+îv7Can a public method be overriden by a protected method?
+Yes
+No"HOverriding methods can NOT be more restrictive than the original method.
+‘wUmethods and variables can be declared as final, but a class cannot be declared final.
+true	
+false"fA final class is a class which can NOT be subclassed. Its the end-of-the-line in the inheritance tree.
 ≥x Can a final class be subclassed?
 No
 Yes"~A final class means the end-of-the-line for the inhertance tree. No subclasses can be made from a final class, only instances.
-–y$Can you have a final abstract class?
-Yes
-No"ñfinal and abstract are opposites: a final class can NOT be subclassed, while an abstract class MUST be subclassed... so final abstract makes no sense.
-rz+Can a member variable be declared abstract?
+–y$Can you have a final abstract class?
 No
-Yes"2Only methods and classes can be declared abstract.
+Yes"ñfinal and abstract are opposites: a final class can NOT be subclassed, while an abstract class MUST be subclassed... so final abstract makes no sense.
+rz+Can a member variable be declared abstract?
+Yes
+No"2Only methods and classes can be declared abstract.
 r{%Can an abstract method be overridden?
 Yes
 No"8An abstract method has no choice! It MUST be overridden.
 d|Can a class be declared native?
 No
 Yes"0Methods can be native, not classes or variables.
-Y})Can a member variable be declared native?
-Yes
-No"Only methods can be native.
-π~#Can a method be declared transient?
-Yes
-No"ÄThe transient modifier is used to keep variable data from being saved if an object is "serialized" (saved as an object ). Since methods don't change their state for an individual object, methods are never serialized, so transient is not needed for methods.
+Y})Can a member variable be declared native?
+No
+Yes"Only methods can be native.
+π~#Can a method be declared transient?
+No
+Yes"ÄThe transient modifier is used to keep variable data from being saved if an object is "serialized" (saved as an object ). Since methods don't change their state for an individual object, methods are never serialized, so transient is not needed for methods.
 ≥"Can a class be declared transient?
 No
 Yes"|Only data members can be declared as transient... meaning their value won't be saved when an object is "serialized" (saved).
-ßÄ/Can a member variable be declared synchronized?
-Yes
-No"bThe word synchronized marks method code so that it can't be run by more than one thread at a time.
-ñÅ%Can a class be declared synchronized?
+ßÄ/Can a member variable be declared synchronized?
 No
-Yes"[The keyword synchronized marks method code so that only one thread can access it at a time.
+Yes"bThe word synchronized marks method code so that it can't be run by more than one thread at a time.
+ñÅ%Can a class be declared synchronized?
+Yes
+No"[The keyword synchronized marks method code so that only one thread can access it at a time.
 ôÇ&Can a method be declared synchronized?
 Yes
 No"]The synchronized modifier means that only one thread at a time can run the synchronized code.
-œÉ4What happens when you compile this: byte a = 2; a++;
-Won't compile without cast
-Compiles and runs
+œÉ4What happens when you compile this: byte a = 2; a++;
+Compiles and runs
+Won't compile without cast
 Runtime error"ÕThe ++operator increments a as a byte, so there's no problem. You WOULD have a problem with a = a + 1; because the a + 1 would result in an int which would then have to be cast back to the byte variable a.
 ¸ÑUClass Y is a subclass of class X. Will this compile? X myX = new X(); Y myY = (Y)myX;
 Yes
@@ -452,27 +452,27 @@ Y})Can a member variable be declared native?
 †ÖpIn a switch statement, the argument to the switch ( ) can be a variable as long as it is compatible with an int.
 true
 false"ïThe switch can obviously hold a variable, because that's what you're testing! But the variable cannot be anything except an int-compatible primitive.
-ÂÜAin a switch construct, the default statement will always execute.	
-false
-true"âThe default statement will only execute if no matching case is found, OR if there is "fall through" from a case statement executed above.
-Ωáhin a switch construct, the default statement will execute if no case values match the switch() argument.
-false
-true";If there are no matching cases found, the default will run.
+ÂÜAin a switch construct, the default statement will always execute.
+true	
+false"âThe default statement will only execute if no matching case is found, OR if there is "fall through" from a case statement executed above.
+Ωáhin a switch construct, the default statement will execute if no case values match the switch() argument.
+true
+false";If there are no matching cases found, the default will run.
 ±ààin a try/catch construct, the catch blocks may be written in any order and the most narrow/specific catch argument is chosen at runtime.	
 false
 true"çThe catch blocks must be written in order from most specific to least (e.g. IOException comes above Exception) or the compiler will complain.
-≠âEa finally block will only be executed if the exception is not caught.
-true	
-false"NThe finally block will ALWAYS run... unless the try/catch calls System.exit().
-µä/a MalformedURLException is a checked exception.
-false
-true"lA MalformedURLException is checked by the compiler to be sure that the "handle or declare" rule is followed.
+≠âEa finally block will only be executed if the exception is not caught.	
+false
+true"NThe finally block will ALWAYS run... unless the try/catch calls System.exit().
+µä/a MalformedURLException is a checked exception.
+true
+false"lA MalformedURLException is checked by the compiler to be sure that the "handle or declare" rule is followed.
 Ûã.an ArithmeticException is a checked exception.	
 false
 true"™ArithmeticExceptions are considered programmer problems, and are NOT checked by the compiler. A divide-by-zero error, for example, should be checked for by your own code.
-ÀåSif a try/catch construct calls System.exit(), the finally block will execute first.
-true	
-false"^System.exit() means stop the program now! Even a finally block can't stop that from happening.
+ÀåSif a try/catch construct calls System.exit(), the finally block will execute first.	
+false
+true"^System.exit() means stop the program now! Even a finally block can't stop that from happening.
 €çNan overriding method can change the access modifier from default to protected.
 false
 true"sSince the protected modifier is less restrictive than default, an overriding method is allowed to make that change.
@@ -482,66 +482,66 @@ Y})Can a member variable be declared native?
 Àèconstructors are not inherited.
 true
 false"ëConstructors are different from methods in several ways, and inheritance is one of them. Subclasses do NOT get a constructor from the superclass.
-›ê}It is legal to declare an array with an interface as the type (instead of a class or primitive) -- example: PetInterface []p;
-false
-true"≈One of the best uses of polymorphism in Java is to declare an array using an interface type, then add objects which can be from any class, as long as they implement the interface type of the array.
+›ê}It is legal to declare an array with an interface as the type (instead of a class or primitive) -- example: PetInterface []p;
+true
+false"≈One of the best uses of polymorphism in Java is to declare an array using an interface type, then add objects which can be from any class, as long as they implement the interface type of the array.
 cë"Can a method be declared volatile?
 No
 Yes"+Only variables can be declared as volatile.
-^íIs cast a keyword?
-No
-Yes"6It may have been in c++, but wasn't carried into Java.
-§ìQWhat is the result of the following code System.out.println( Math.round(-3.22) );
--4
+^íIs cast a keyword?
+Yes
+No"6It may have been in c++, but wasn't carried into Java.
+§ìQWhat is the result of the following code System.out.println( Math.round(-3.22) );
+-3.0
 -4.0
--3
--3.0".round returns the closest int to the argument.
+-3
+-4".round returns the closest int to the argument.
 áîQWhat is the result of the following code? System.out.println( Math.ceil(-3.22) );
--3.0
--4
--3
--4.0"êceil returns the smallest (closest to negative infinity) double value that is not less than the argument and is equal to a mathematical integer.
+-3.0
+-4.0
+-3
+-4"êceil returns the smallest (closest to negative infinity) double value that is not less than the argument and is equal to a mathematical integer.
 ãïRWhat is the result of the following code? System.out.println( Math.floor(-3.22) );
 -3.0
--4
--3
+-3
+-4
 -4.0"ìfloor returns the largest (closest to positive infinity) double value that is not greater than the argument and is equal to a mathematical integer.
-πñNWhat is the result of the following code? System.out.println( Math.sqrt(-4) );
-2.0
-2
+πñNWhat is the result of the following code? System.out.println( Math.sqrt(-4) );
 NaN
 -2
--2.0"AIf the argument is NaN or less than zero, then the result is NaN.
+-2.0
+2
+2.0"AIf the argument is NaN or less than zero, then the result is NaN.
 âó8Will this compile? int iArray[] = new int[] {1,2,3,4,5};
 No
 Yes";This is one way to initialize an array when it is declared.
-°ò7Will this compile? int iArray[5]= new int[]{1,2,3,4,5};
-No
-Yes"TAn array declaration may not have the size on the left hand side of the equals sign.
+°ò7Will this compile? int iArray[5]= new int[]{1,2,3,4,5};
+Yes
+No"TAn array declaration may not have the size on the left hand side of the equals sign.
 ÕôyAssuming all variables are declared and initialized properly, will this compile? for ( i = 1, j = 2; i < 3; i++, j++ ){};
 No
 Yes">Multiple initializers and multiple incrementers are permitted.
 ÍönAssuming all variables are declared and initialized properly, will this compile? for ( i = 1; k < 5; j++ ) {};
 Yes
 No"fMultiple variables are permitted within the construct of a for loop (although this is not recommended)
-æõÄif you do not provide any constructor for your class, the compiler will insert a default constructor with public access modifier
-true	
-false"¢The generated constructor is given the access modifier "public" if the class is public, or else the constructor is given the default access implied by no modifier
-Æú.An interface can extend at most one interface.
-true	
-false"fAn interface may extend multiple interfaces. A class is, however, limited to extending only one class.
+æõÄif you do not provide any constructor for your class, the compiler will insert a default constructor with public access modifier	
+false
+true"¢The generated constructor is given the access modifier "public" if the class is public, or else the constructor is given the default access implied by no modifier
+Æú.An interface can extend at most one interface.	
+false
+true"fAn interface may extend multiple interfaces. A class is, however, limited to extending only one class.
 óù)An abstract class can have a constructor.
 Yes
 No"◊An abstract class may have a constructor. Since an abstract class cannot be instantiated, you cannot call its constructor directly. However, a constructor will be called implicitly when an abstract class is extended
-ÓûZIf there is a return statement in the catch block, the finally block will not be executed.
-true	
-false"zThe ONLY case when the finally block will not be excecuted is if there is a call to System.exit() in the try/catch blocks.
+ÓûZIf there is a return statement in the catch block, the finally block will not be executed.	
+false
+true"zThe ONLY case when the finally block will not be excecuted is if there is a call to System.exit() in the try/catch blocks.
 êü∆what will be the output of this code: class Exam {   protected String difficultyLevel = "easy";   public void printDifficultyLevel() {     System.out.println( difficultyLevel );   } } class SCJPExam extends Exam {   private String difficultyLevel = "killing"; } SCJPExam myExam = new SCJPExam(); myExam.printDifficultyLevel();
 easy	
 killing"-Methods can be overridden. Attributes cannot.
-∆†2An anonymous inner class cannot have a constructor
-true
-false"zA constructor has the same name as the class. If the class is anonymous (has no name), how could you name the constructor?
-ß°?A method cannot be declared as throwing more than one exception
-true	
-false"NAny number of exceptions, separated by commas, can be coded in a throws clause
+∆†2An anonymous inner class cannot have a constructor
+false
+true"zA constructor has the same name as the class. If the class is anonymous (has no name), how could you name the constructor?
+ß°?A method cannot be declared as throwing more than one exception	
+false
+true"NAny number of exceptions, separated by commas, can be coded in a throws clause
