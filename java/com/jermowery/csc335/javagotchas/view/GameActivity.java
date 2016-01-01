@@ -1,6 +1,7 @@
 package com.jermowery.csc335.javagotchas.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,10 +11,15 @@ import com.jermowery.csc335.javagotchas.data.DataProvider;
 import com.jermowery.csc335.javagotchas.data.DataProviderFactory;
 import com.jermowery.csc335.javagotchas.game.Game;
 import com.jermowery.csc335.javagotchas.game.GameFactory;
+import com.jermowery.csc335.javagotchas.player.PlayerDataProviderFactory;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
+import com.jermowery.csc335.javagotchas.proto.nano.PlayerProto.PlayerStats;
+import com.jermowery.csc335.javagotchas.proto.nano.PlayerProto.TurnsGameStats;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 
@@ -22,8 +28,14 @@ import java.util.concurrent.ExecutionException;
  */
 public abstract class GameActivity extends Activity implements Observer {
     private static final String DATA_FILE_NAME = "data";
+    private static final String PLAYER_DATA_FILE = "player";
     protected Game game;
+    protected PlayerStats player;
     private AsyncTask<GameSettings, Void, Game> dataTask;
+
+    public PlayerStats getPlayer() {
+        return this.player;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +64,19 @@ public abstract class GameActivity extends Activity implements Observer {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        byte[] playerStats = PlayerStats.toByteArray(this.player);
+        try {
+            OutputStream os = openFileOutput(PLAYER_DATA_FILE, Context.MODE_PRIVATE);
+            os.write(playerStats);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+    }
+
     protected abstract void startGame();
 
     private class DataOperation extends AsyncTask<GameSettings, Void, Game> {
@@ -70,6 +95,13 @@ public abstract class GameActivity extends Activity implements Observer {
             try {
                 DataProvider dataProvider = DataProviderFactory.getDataProvider(getAssets().open(DATA_FILE_NAME));
                 data = dataProvider.getData();
+                if (Arrays.asList(fileList()).contains(PLAYER_DATA_FILE)) {
+                    GameActivity.this.player =
+                            PlayerDataProviderFactory.getPlayerDataProvider(openFileInput(PLAYER_DATA_FILE)).getPlayer();
+                } else {
+                    GameActivity.this.player = new PlayerStats();
+                    GameActivity.this.player.turnsGameStats = new TurnsGameStats();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(1);

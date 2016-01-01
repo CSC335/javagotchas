@@ -58,7 +58,7 @@ public class TurnsGameActivity extends GameActivity {
                 this.nextButton.setVisibility(Button.INVISIBLE);
                 Question question = this.game.getCurrentQuestion();
                 TextView questionText = (TextView) findViewById(R.id.questionText);
-                questionText.setText("#" + question.id + question.text);
+                questionText.setText("#" + question.id + " " + question.text);
                 for (int i = 0; i < this.answerButtons.size(); i++) {
                     Button b = this.answerButtons.get(i);
                     b.setEnabled(true);
@@ -74,11 +74,14 @@ public class TurnsGameActivity extends GameActivity {
                 break;
             case CORRECT_ANSWER:
             case INCORRECT_ANSWER:
+                this.player.turnsGameStats.questionsAttempted++;
                 int index = this.answerButtons.indexOf(this.lastClicked);
                 if (this.game.getCurrentQuestion().answer[index].isCorrect) {
                     this.lastClicked.setBackgroundColor(Color.GREEN);
+                    this.player.turnsGameStats.questionsCorrect++;
                 } else {
                     this.lastClicked.setBackgroundColor(Color.RED);
+                    this.player.turnsGameStats.questionsIncorrect++;
                 }
                 this.lastClicked.setTextColor(Color.BLACK);
                 TextView explanationText = (TextView) findViewById(R.id.questionText);
