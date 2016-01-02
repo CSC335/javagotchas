@@ -128,6 +128,12 @@ public class ApiEnabledActivity extends FragmentActivity implements ConnectionCa
         super.startActivity(intent);
     }
 
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, Bundle options) {
+        this.nextIntent = intent;
+        super.startActivityForResult(intent, requestCode, options);
+    }
+
     /* A fragment to display an error dialog */
     public static class ErrorDialogFragment extends DialogFragment {
         public ErrorDialogFragment() {

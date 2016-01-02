@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import com.google.android.gms.games.Games;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
 public class MenuActivity extends ApiEnabledActivity {
     private static final int MAX_TURNS = 10;
     private static final int MAX_SCORE = 10;
+    private static final int ACHIEVEMENTS_ACTIVITY = 42;
     private GameSettings gameSettings;
 
     /**
@@ -24,8 +26,10 @@ public class MenuActivity extends ApiEnabledActivity {
         if (!this.mGoogleApiClient.isConnected()) {
             Button startGameButton = (Button) findViewById(R.id.startGameButton);
             Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
+            Button achievementsButton = (Button) findViewById(R.id.achievementsButton);
             startGameButton.setEnabled(false);
             viewQuestionsButton.setEnabled(false);
+            achievementsButton.setEnabled(false);
         }
 
         this.gameSettings = new GameSettings();
@@ -37,8 +41,10 @@ public class MenuActivity extends ApiEnabledActivity {
         super.onConnected(bundle);
         Button startGameButton = (Button) findViewById(R.id.startGameButton);
         Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
+        Button achievementsButton = (Button) findViewById(R.id.achievementsButton);
         startGameButton.setEnabled(true);
         viewQuestionsButton.setEnabled(true);
+        achievementsButton.setEnabled(true);
     }
 
     public void onStartGameButtonClick(View view) {
@@ -58,5 +64,9 @@ public class MenuActivity extends ApiEnabledActivity {
         gameActivity.putExtra(getString(R.string.game_decider_type), this.gameSettings.gameDeciderType);
         gameActivity.putExtra(getString(R.string.question_selector_type), this.gameSettings.questionSelectorType);
         startActivity(gameActivity);
+    }
+
+    public void onAchievementsButtonClick(View view) {
+        startActivityForResult(Games.Achievements.getAchievementsIntent(this.mGoogleApiClient), ACHIEVEMENTS_ACTIVITY);
     }
 }
