@@ -2,6 +2,8 @@ package com.jermowery.csc335.javagotchas.view;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,6 +24,17 @@ public class TurnsGameActivity extends GameActivity {
     private List<Button> answerButtons;
     private Button nextButton;
     private Button lastClicked;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        super.onConnected(bundle);
+        System.out.println("Fucky you you fucking piece of shit!");
+    }
 
     @Override
     protected void startGame() {

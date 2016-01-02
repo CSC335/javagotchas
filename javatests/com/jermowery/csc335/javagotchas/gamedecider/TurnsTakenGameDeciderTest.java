@@ -1,6 +1,6 @@
 package com.jermowery.csc335.javagotchas.gamedecider;
 
-import com.jermowery.csc335.javagotchas.BuildConfig;
+import com.jermowery.csc335.javagotchas.view.BuildConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

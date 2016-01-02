@@ -1,12 +1,12 @@
 package com.jermowery.csc335.javagotchas.game;
 
-import com.jermowery.csc335.javagotchas.BuildConfig;
 import com.jermowery.csc335.javagotchas.gamedecider.GameDecider;
 import com.jermowery.csc335.javagotchas.logic.Score;
 import com.jermowery.csc335.javagotchas.logic.UpdateState;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Answer;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 import com.jermowery.csc335.javagotchas.questionselector.QuestionSelector;
+import com.jermowery.csc335.javagotchas.view.BuildConfig;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

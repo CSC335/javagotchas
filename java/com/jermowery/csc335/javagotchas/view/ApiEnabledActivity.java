@@ -26,6 +26,7 @@ public class ApiEnabledActivity extends FragmentActivity implements ConnectionCa
     private static final String STATE_RESOLVING_ERROR = "resolving_error";
     protected GoogleApiClient mGoogleApiClient;
     private boolean mResolvingError;
+    private Intent nextIntent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,9 @@ public class ApiEnabledActivity extends FragmentActivity implements ConnectionCa
 
     @Override
     protected void onStop() {
-        this.mGoogleApiClient.disconnect();
+        if (nextIntent == null) {
+            this.mGoogleApiClient.disconnect();
+        }
         super.onStop();
     }
 
@@ -119,6 +122,12 @@ public class ApiEnabledActivity extends FragmentActivity implements ConnectionCa
         this.mGoogleApiClient.reconnect();
     }
 
+    @Override
+    public void startActivity(Intent intent) {
+        this.nextIntent = intent;
+        super.startActivity(intent);
+    }
+
     /* A fragment to display an error dialog */
     public static class ErrorDialogFragment extends DialogFragment {
         public ErrorDialogFragment() {
@@ -137,6 +146,4 @@ public class ApiEnabledActivity extends FragmentActivity implements ConnectionCa
             ((ApiEnabledActivity) getActivity()).onDialogDismissed();
         }
     }
-
-
 }

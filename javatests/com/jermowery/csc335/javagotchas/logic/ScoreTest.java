@@ -1,6 +1,6 @@
 package com.jermowery.csc335.javagotchas.logic;
 
-import com.jermowery.csc335.javagotchas.BuildConfig;
+import com.jermowery.csc335.javagotchas.view.BuildConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;

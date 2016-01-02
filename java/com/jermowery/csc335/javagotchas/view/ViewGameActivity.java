@@ -16,6 +16,7 @@ import java.util.Observable;
  */
 public class ViewGameActivity extends GameActivity {
     private List<Button> answerButtons;
+    private Spinner questionSelector;
 
     @Override
     protected void startGame() {
@@ -36,7 +37,7 @@ public class ViewGameActivity extends GameActivity {
     }
 
     private void setUpDrownDown() {
-        Spinner questionSelector = (Spinner) findViewById(R.id.questionSelector);
+        this.questionSelector = (Spinner) findViewById(R.id.questionSelector);
         Integer[] questionIndicies = new Integer[this.game.getTotalNumberOfQuestions()];
         for (int i = 0; i < questionIndicies.length; i++) {
             questionIndicies[i] = i + 1;
@@ -45,8 +46,8 @@ public class ViewGameActivity extends GameActivity {
                 this.getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 questionIndicies);
-        questionSelector.setAdapter(adapter);
-        questionSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        this.questionSelector.setAdapter(adapter);
+        this.questionSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ViewGameActivity.this.game.goToQuestion(i);
@@ -57,7 +58,7 @@ public class ViewGameActivity extends GameActivity {
 
             }
         });
-        questionSelector.setVisibility(Spinner.VISIBLE);
+        this.questionSelector.setVisibility(Spinner.VISIBLE);
     }
 
     private void setUpNavigationButtons() {
@@ -67,11 +68,18 @@ public class ViewGameActivity extends GameActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int newPosition = -1;
                 if (view == previousButton) {
                     ViewGameActivity.this.game.goToPreviousQuestion();
+                    newPosition = ViewGameActivity.this.questionSelector.getSelectedItemPosition();
+                    newPosition = newPosition <= 0 ? ViewGameActivity.this.questionSelector.getAdapter().getCount() - 1
+                            : newPosition - 1;
                 } else if (view == nextButton) {
                     ViewGameActivity.this.game.goToNextQuestion();
+                    newPosition = (ViewGameActivity.this.questionSelector.getSelectedItemPosition() + 1) %
+                            ViewGameActivity.this.questionSelector.getAdapter().getCount();
                 }
+                ViewGameActivity.this.questionSelector.setSelection(newPosition);
             }
         };
         previousButton.setOnClickListener(listener);
