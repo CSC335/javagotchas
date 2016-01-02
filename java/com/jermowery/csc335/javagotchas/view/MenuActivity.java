@@ -1,15 +1,14 @@
 package com.jermowery.csc335.javagotchas.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import com.jermowery.csc335.javagotchas.R;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
-public class MenuActivity extends Activity {
+public class MenuActivity extends ApiEnabledActivity {
     private static final int MAX_TURNS = 10;
     private static final int MAX_SCORE = 10;
     private GameSettings gameSettings;
@@ -22,10 +21,24 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Button startGameButton = (Button) findViewById(R.id.startGameButton);
-        Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
+        if (!this.mGoogleApiClient.isConnected()) {
+            Button startGameButton = (Button) findViewById(R.id.startGameButton);
+            Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
+            startGameButton.setEnabled(false);
+            viewQuestionsButton.setEnabled(false);
+        }
+
         this.gameSettings = new GameSettings();
 
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        super.onConnected(bundle);
+        Button startGameButton = (Button) findViewById(R.id.startGameButton);
+        Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
+        startGameButton.setEnabled(true);
+        viewQuestionsButton.setEnabled(true);
     }
 
     public void onStartGameButtonClick(View view) {

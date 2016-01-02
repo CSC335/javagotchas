@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.jermowery.csc335.javagotchas.R;
+import com.google.android.gms.games.Games;
 import com.jermowery.csc335.javagotchas.logic.UpdateState;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 
@@ -79,6 +79,11 @@ public class TurnsGameActivity extends GameActivity {
                 if (this.game.getCurrentQuestion().answer[index].isCorrect) {
                     this.lastClicked.setBackgroundColor(Color.GREEN);
                     this.player.turnsGameStats.questionsCorrect++;
+                    this.player.turnsGameStats.currentStreak++;
+                    Games.Achievements.increment(this.mGoogleApiClient, getString(R.string.achievement_the_rick), 1);
+                    if (this.player.turnsGameStats.currentStreak > this.player.turnsGameStats.maxStreak) {
+                        this.player.turnsGameStats.maxStreak = this.player.turnsGameStats.currentStreak;
+                    }
                 } else {
                     this.lastClicked.setBackgroundColor(Color.RED);
                     this.player.turnsGameStats.questionsIncorrect++;

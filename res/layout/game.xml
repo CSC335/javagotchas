@@ -33,21 +33,27 @@
                     android:layout_height="wrap_content"
                     android:text="answer1"
                     android:id="@+id/answer1" android:layout_column="0" android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true" android:layout_alignParentStart="true"/>"
-            android:layout_centerVertical="true" android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" android:layout_gravity="center_vertical"/>
+                    android:layout_alignParentEnd="true" android:layout_alignParentStart="true"
+                    android:textAllCaps="false"
+            />
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer2"
                     android:id="@+id/answer2" android:layout_column="0"
                     android:layout_below="@+id/answer1" android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:textAllCaps="false"
+            />
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer3"
                     android:id="@+id/answer3" android:layout_column="0"
                     android:layout_below="@+id/answer2" android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true" android:visibility="invisible"/>
+                    android:layout_alignParentEnd="true" android:visibility="invisible"
+                    android:textAllCaps="false"
+            />
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer4"
                     android:id="@+id/answer4" android:layout_column="0"
                     android:layout_below="@+id/answer3" android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true" android:visibility="invisible"/>
+                    android:layout_alignParentEnd="true" android:visibility="invisible"
+                    android:textAllCaps="false"
+            />
         </RelativeLayout>
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"

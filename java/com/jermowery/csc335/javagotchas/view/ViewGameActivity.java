@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.jermowery.csc335.javagotchas.R;
 import com.jermowery.csc335.javagotchas.logic.UpdateState;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 
@@ -85,7 +84,7 @@ public class ViewGameActivity extends GameActivity {
         if (updateState == UpdateState.CHANGE_QUESTION) {
             Question question = this.game.getCurrentQuestion();
             TextView questionText = (TextView) findViewById(R.id.questionText);
-            questionText.setText("#" + question.id + question.text + "\n\tExplanation: " + question.explanation);
+            questionText.setText("#" + question.id + " " + question.text + "\n\tExplanation: " + question.explanation);
             for (int i = 0; i < this.answerButtons.size(); i++) {
                 Button b = this.answerButtons.get(i);
                 if (i < question.answer.length) {

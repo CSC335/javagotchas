@@ -1,12 +1,11 @@
 package com.jermowery.csc335.javagotchas.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.ProgressBar;
-import com.jermowery.csc335.javagotchas.R;
 import com.jermowery.csc335.javagotchas.data.DataProvider;
 import com.jermowery.csc335.javagotchas.data.DataProviderFactory;
 import com.jermowery.csc335.javagotchas.game.Game;
@@ -26,7 +25,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by Jeremy on 12/27/2015.
  */
-public abstract class GameActivity extends Activity implements Observer {
+public abstract class GameActivity extends ApiEnabledActivity implements Observer {
     private static final String DATA_FILE_NAME = "data";
     private static final String PLAYER_DATA_FILE = "player";
     protected Game game;
@@ -61,7 +60,12 @@ public abstract class GameActivity extends Activity implements Observer {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        super.onConnected(bundle);
+        findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
     }
 
     @Override
@@ -113,7 +117,9 @@ public abstract class GameActivity extends Activity implements Observer {
         @Override
         protected void onPostExecute(Game game) {
             super.onPostExecute(game);
-            findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
+            if (GameActivity.this.mGoogleApiClient.isConnected()) {
+                findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
+            }
         }
     }
 }

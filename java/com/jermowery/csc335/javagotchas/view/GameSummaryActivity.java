@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.jermowery.csc335.javagotchas.R;
 import com.jermowery.csc335.javagotchas.logic.Score;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 

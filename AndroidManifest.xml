@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.jermowery.csc335.javagotchas"
+          package="com.jermowery.csc335.javagotchas.view"
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:targetSdkVersion="21"/>
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name=".view.MenuActivity"
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
+                 android:name=".ApplicationWithPlayServices">
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+                   android:value="@string/app_id"/>
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>
+        <activity android:name=".MenuActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -13,21 +18,21 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".view.TurnsGameActivity"
+                android:name=".TurnsGameActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
         <activity
-                android:name=".view.ViewGameActivity"
+                android:name=".ViewGameActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
         <activity
-                android:name=".view.GameSummaryActivity"
+                android:name=".GameSummaryActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

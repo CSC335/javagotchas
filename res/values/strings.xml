@@ -4,4 +4,11 @@
     <string name="game_decider_type">game_decider_type</string>
     <string name="question_selector_type">question_selector_type</string>
     <string name="score">score</string>
+    <string name="app_id">784091874313</string>
+    <string name="package_name">com.jermowery.csc335.javagotchas.view</string>
+    <string name="achievement_the_rick">CgkIiYiS_OgWEAIQAQ</string>
+    <string name="achievement_the_rick_roll">CgkIiYiS_OgWEAIQAg</string>
+    <string name="achievement_the_easy">CgkIiYiS_OgWEAIQAw</string>
+    <string name="achievement_the_perfect">CgkIiYiS_OgWEAIQBA</string>
+    <string name="achievement_impressive_loss">CgkIiYiS_OgWEAIQBQ</string>
 </resources>

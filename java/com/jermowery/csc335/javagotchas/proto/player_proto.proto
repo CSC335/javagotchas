@@ -12,4 +12,6 @@ message TurnsGameStats {
     optional int32 questionsCorrect = 1;
     optional int32 questionsAttempted = 2;
     optional int32 questionsIncorrect = 3;
+    optional int32 currentStreak = 4;
+    optional int32 maxStreak = 5;
 }

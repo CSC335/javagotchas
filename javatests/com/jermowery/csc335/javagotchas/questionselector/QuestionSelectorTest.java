@@ -1,8 +1,8 @@
 package com.jermowery.csc335.javagotchas.questionselector;
 
-import com.jermowery.csc335.javagotchas.BuildConfig;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
+import com.jermowery.csc335.javagotchas.view.BuildConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
