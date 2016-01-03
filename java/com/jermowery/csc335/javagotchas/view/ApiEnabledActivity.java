@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -34,13 +36,14 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
         if (!((ApplicationWithPlayServices) this.getApplicationContext()).isConnected()) {
             this.setEnabledAllElements(false);
         }
+        this.getActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_RESOLVING_ERROR, mResolvingError);
-
     }
 
     @Override
@@ -127,6 +130,17 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
     public void onConnectionSuspended(int i) {
         this.setEnabledAllElements(false);
         ((ApplicationWithPlayServices) this.getApplicationContext()).reconnect();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /* A fragment to display an error dialog */

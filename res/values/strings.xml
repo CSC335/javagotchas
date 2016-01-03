@@ -13,4 +13,6 @@
     <string name="achievement_impressive_loss">CgkIiYiS_OgWEAIQBQ</string>
     <string name="sign_out">Sign out</string>
     <string name="sign_in">Sign in</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 </resources>

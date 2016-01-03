@@ -20,6 +20,9 @@
         <activity
                 android:name=".TurnsGameActivity"
                 android:label="@string/app_name">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MenuActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
@@ -27,6 +30,9 @@
         <activity
                 android:name=".ViewGameActivity"
                 android:label="@string/app_name">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MenuActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
@@ -34,6 +40,9 @@
         <activity
                 android:name=".GameSummaryActivity"
                 android:label="@string/app_name">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MenuActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>

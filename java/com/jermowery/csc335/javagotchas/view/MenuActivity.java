@@ -1,8 +1,11 @@
 package com.jermowery.csc335.javagotchas.view;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +23,7 @@ public class MenuActivity extends ApiEnabledActivity {
     private GameSettings gameSettings;
     private DrawerLayout navigationDrawer;
     private ListView navigationDrawerItems;
+    private ActionBarDrawerToggle toggle;
 
     /**
      * Called when the activity is first created.
@@ -58,8 +62,38 @@ public class MenuActivity extends ApiEnabledActivity {
 
             }
         });
+        this.toggle = new ActionBarDrawerToggle(
+                this, this.navigationDrawer, R.string.open_drawer, R.string.close_drawer);
+        this.navigationDrawer.setDrawerListener(this.toggle);
+        this.getActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getActionBar().setHomeButtonEnabled(true);
         super.onCreate(savedInstanceState);
         this.gameSettings = new GameSettings();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        this.toggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        this.toggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (this.toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle your other action bar items...
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
