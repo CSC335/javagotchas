@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Observable;
 
 /**
- * Created by Jeremy on 12/28/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class ViewGameActivity extends GameActivity {
     private List<Button> answerButtons;
@@ -42,7 +42,7 @@ public class ViewGameActivity extends GameActivity {
         for (int i = 0; i < questionIndicies.length; i++) {
             questionIndicies[i] = i + 1;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(
                 this.getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 questionIndicies);
@@ -110,6 +110,5 @@ public class ViewGameActivity extends GameActivity {
 
     @Override
     protected void setEnabledAllElements(boolean state) {
-        return;
     }
 }

@@ -9,13 +9,12 @@ import com.jermowery.csc335.javagotchas.logic.Score;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 
 /**
- * Created by Jeremy on 12/30/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class GameSummaryActivity extends ApiEnabledActivity {
 
     @Override
     protected void setEnabledAllElements(boolean state) {
-        return;
     }
 
     @Override

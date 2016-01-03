@@ -23,7 +23,7 @@ import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by Jeremy on 12/27/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public abstract class GameActivity extends ApiEnabledActivity implements Observer {
     private static final String DATA_FILE_NAME = "data";
@@ -51,9 +51,7 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
             this.game = this.dataTask.get();
             this.game.addObserver(this);
             this.startGame();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }

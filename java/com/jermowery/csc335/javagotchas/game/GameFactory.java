@@ -9,7 +9,7 @@ import com.jermowery.csc335.javagotchas.questionselector.QuestionSelector;
 import com.jermowery.csc335.javagotchas.questionselector.QuestionSelectorFactory;
 
 /**
- * Created by Jeremy on 12/28/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class GameFactory {
     public static final int MAX_SCORE = 10;

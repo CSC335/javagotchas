@@ -6,7 +6,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 import java.util.Random;
 
 /**
- * Created by jeremy on 12/19/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class RandomQuestionSelector extends QuestionSelector {
     private Random random;

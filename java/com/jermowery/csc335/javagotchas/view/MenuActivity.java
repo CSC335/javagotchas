@@ -14,6 +14,9 @@ import android.widget.ListView;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
+/**
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ */
 public class MenuActivity extends ApiEnabledActivity {
     private static final int MAX_TURNS = 10;
     private static final int MAX_SCORE = 10;
@@ -65,8 +68,6 @@ public class MenuActivity extends ApiEnabledActivity {
         this.toggle = new ActionBarDrawerToggle(
                 this, this.navigationDrawer, R.string.open_drawer, R.string.close_drawer);
         this.navigationDrawer.setDrawerListener(this.toggle);
-        this.getActionBar().setDisplayHomeAsUpEnabled(true);
-        this.getActionBar().setHomeButtonEnabled(true);
         super.onCreate(savedInstanceState);
         this.gameSettings = new GameSettings();
     }

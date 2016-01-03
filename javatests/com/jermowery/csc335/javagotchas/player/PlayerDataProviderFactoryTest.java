@@ -16,7 +16,7 @@ import java.io.InputStream;
 import static com.google.common.truth.Truth.assertThat;
 
 /**
- * Created by Jeremy on 1/3/2016.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, constants = BuildConfig.class)

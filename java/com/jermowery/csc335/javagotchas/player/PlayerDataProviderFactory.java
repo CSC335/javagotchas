@@ -3,7 +3,7 @@ package com.jermowery.csc335.javagotchas.player;
 import java.io.InputStream;
 
 /**
- * Created by Jeremy on 12/31/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class PlayerDataProviderFactory {
     public static PlayerDataProvider getPlayerDataProvider(InputStream ios) {

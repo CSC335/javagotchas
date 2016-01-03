@@ -3,7 +3,7 @@ package com.jermowery.csc335.javagotchas.logic;
 import java.io.Serializable;
 
 /**
- * Created by jeremy on 12/19/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class Score implements Serializable {
     private static final int MIN_MAX_SCORE = 0;
@@ -35,6 +35,8 @@ public class Score implements Serializable {
 
     @Override
     public boolean equals(Object other) {
-        return this.maxScore == ((Score) other).getMaxScore() && this.currentScore == ((Score) other).getCurrentScore();
+        return other instanceof Score
+                && this.maxScore == ((Score) other).getMaxScore()
+                && this.currentScore == ((Score) other).getCurrentScore();
     }
 }

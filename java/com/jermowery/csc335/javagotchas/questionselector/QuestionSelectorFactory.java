@@ -7,7 +7,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSetting
 import java.util.Random;
 
 /**
- * Created by jeremy on 12/19/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class QuestionSelectorFactory {
     public static QuestionSelector getRandomQuestionSelector(Data data, Random random) {

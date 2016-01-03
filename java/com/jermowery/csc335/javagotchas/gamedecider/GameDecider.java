@@ -3,7 +3,7 @@ package com.jermowery.csc335.javagotchas.gamedecider;
 import java.io.Serializable;
 
 /**
- * Created by jeremy on 12/21/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public interface GameDecider extends Serializable {
     boolean isOver(int numTurnsTaken);

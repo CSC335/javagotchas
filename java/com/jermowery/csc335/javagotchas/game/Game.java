@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Observable;
 
 /**
- * Created by jeremy on 12/18/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class Game extends Observable implements Serializable {
     private static final int SCORE_DELTA = 1;

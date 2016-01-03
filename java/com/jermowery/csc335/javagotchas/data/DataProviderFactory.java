@@ -3,7 +3,7 @@ package com.jermowery.csc335.javagotchas.data;
 import java.io.InputStream;
 
 /**
- * Created by jeremy on 12/18/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class DataProviderFactory {
 

@@ -4,7 +4,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
 /**
- * Created by Jeremy on 12/28/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class GameDeciderFactory {
     public static final int MAX_TURNS = 10;

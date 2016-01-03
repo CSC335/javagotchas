@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by Jeremy on 12/31/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class FromProtoPlayerDataProvider extends PlayerDataProvider {
 

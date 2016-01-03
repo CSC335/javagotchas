@@ -15,7 +15,7 @@ import java.util.Random;
 import static com.google.common.truth.Truth.assertThat;
 
 /**
- * Created by jeremy on 12/19/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, constants = BuildConfig.class)

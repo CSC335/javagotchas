@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +17,7 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 
 /**
- * Created by Jeremy on 1/1/2016.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public abstract class ApiEnabledActivity extends FragmentActivity implements ConnectionCallbacks, OnConnectionFailedListener {
     // Request code to use when launching the resolution activity
@@ -36,8 +37,10 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
         if (!((ApplicationWithPlayServices) this.getApplicationContext()).isConnected()) {
             this.setEnabledAllElements(false);
         }
-        this.getActionBar().setDisplayHomeAsUpEnabled(true);
-        this.getActionBar().setHomeButtonEnabled(true);
+        if (this.getActionBar() != null) {
+            this.getActionBar().setDisplayHomeAsUpEnabled(true);
+            this.getActionBar().setHomeButtonEnabled(true);
+        }
     }
 
     @Override
@@ -67,7 +70,7 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult result) {
+    public void onConnectionFailed(@NonNull ConnectionResult result) {
         if (mResolvingError) {
             // Already attempting to resolve an error.
             return;
@@ -149,6 +152,7 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
         }
 
         @Override
+        @NonNull
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Get the error code and retrieve the appropriate dialog
             int errorCode = this.getArguments().getInt(DIALOG_ERROR);

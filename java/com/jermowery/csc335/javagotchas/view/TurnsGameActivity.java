@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Observable;
 
 /**
- * Created by Jeremy on 12/28/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class TurnsGameActivity extends GameActivity {
 
@@ -76,11 +76,11 @@ public class TurnsGameActivity extends GameActivity {
     @Override
     public void update(Observable observable, Object o) {
         UpdateState updateState = (UpdateState) o;
+        TextView questionText = (TextView) findViewById(R.id.questionText);
         switch (updateState) {
             case CHANGE_QUESTION:
                 this.nextButton.setVisibility(Button.INVISIBLE);
                 Question question = this.game.getCurrentQuestion();
-                TextView questionText = (TextView) findViewById(R.id.questionText);
                 questionText.setText("#" + question.id + " " + question.text);
                 for (int i = 0; i < this.answerButtons.size(); i++) {
                     Button b = this.answerButtons.get(i);
@@ -124,9 +124,9 @@ public class TurnsGameActivity extends GameActivity {
                                 getString(R.string.achievement_the_jeremy), 1);
                     }
                 }
-                TextView explanationText = (TextView) findViewById(R.id.questionText);
-                explanationText.setText(
-                        explanationText.getText() + "\nExplanation: " + game.getCurrentQuestion().explanation);
+
+                questionText.setText(
+                        questionText.getText() + "\nExplanation: " + game.getCurrentQuestion().explanation);
                 this.nextButton.setVisibility(Button.VISIBLE);
                 break;
         }

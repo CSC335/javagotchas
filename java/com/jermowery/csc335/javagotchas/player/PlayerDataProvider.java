@@ -5,7 +5,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.PlayerProto.PlayerStats;
 import java.io.InputStream;
 
 /**
- * Created by Jeremy on 12/31/2015.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public abstract class PlayerDataProvider {
     private InputStream ios;

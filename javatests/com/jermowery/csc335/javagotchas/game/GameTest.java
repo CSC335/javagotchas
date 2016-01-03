@@ -31,7 +31,7 @@ import static org.mockito.Matchers.intThat;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by jeremy on 12/21/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, constants = BuildConfig.class)

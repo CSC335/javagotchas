@@ -8,7 +8,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.games.Games;
 
 /**
- * Created by Jeremy on 1/1/2016.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class ApplicationWithPlayServices extends Application {
 

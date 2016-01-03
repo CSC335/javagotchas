@@ -4,7 +4,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 
 /**
- * Created by jeremy on 12/20/15.
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public class InOrderQuestionSelector extends QuestionSelector {
     private int currentIndex;
