@@ -48,5 +48,11 @@ public class GameSummaryActivity extends ApiEnabledActivity {
                 finish();
             }
         });
+        ((ApplicationWithPlayServices) this.getApplicationContext()).unlockAchievement(
+                getString(R.string.achievement_the_easy));
+        if (score.getCurrentScore() == score.getMaxScore()) {
+            ((ApplicationWithPlayServices) this.getApplicationContext()).unlockAchievement(
+                    getString(R.string.achievement_the_perfect));
+        }
     }
 }

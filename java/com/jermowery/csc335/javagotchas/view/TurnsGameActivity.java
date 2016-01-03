@@ -102,15 +102,27 @@ public class TurnsGameActivity extends GameActivity {
                 if (this.game.getCurrentQuestion().answer[index].isCorrect) {
                     this.lastClicked.setBackgroundColor(Color.parseColor("#1B5E20"));
                     this.player.turnsGameStats.questionsCorrect++;
-                    this.player.turnsGameStats.currentStreak++;
+                    this.player.turnsGameStats.currentCorrectStreak++;
+                    this.player.turnsGameStats.currentIncorrectStreak = 0;
                     ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
                             getString(R.string.achievement_the_rick), 1);
-                    if (this.player.turnsGameStats.currentStreak > this.player.turnsGameStats.maxStreak) {
-                        this.player.turnsGameStats.maxStreak = this.player.turnsGameStats.currentStreak;
+                    if (this.player.turnsGameStats.currentCorrectStreak > this.player.turnsGameStats.maxCorrectStreak) {
+                        this.player.turnsGameStats.maxCorrectStreak = this.player.turnsGameStats.currentCorrectStreak;
+                        ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
+                                getString(R.string.achievement_the_rick_roll), 1);
                     }
                 } else {
                     this.lastClicked.setBackgroundColor(Color.parseColor("#B71C1C"));
                     this.player.turnsGameStats.questionsIncorrect++;
+                    this.player.turnsGameStats.currentIncorrectStreak++;
+                    this.player.turnsGameStats.currentCorrectStreak = 0;
+                    ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
+                            getString(R.string.achievement_impressive_loss), 1);
+                    if (this.player.turnsGameStats.currentIncorrectStreak > this.player.turnsGameStats.maxIncorrectStreak) {
+                        this.player.turnsGameStats.maxIncorrectStreak = this.player.turnsGameStats.currentIncorrectStreak;
+                        ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
+                                getString(R.string.achievement_the_jeremy), 1);
+                    }
                 }
                 TextView explanationText = (TextView) findViewById(R.id.questionText);
                 explanationText.setText(

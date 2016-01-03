@@ -66,7 +66,6 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         byte[] playerStats = PlayerStats.toByteArray(this.player);
         try {
             OutputStream os = openFileOutput(PLAYER_DATA_FILE, Context.MODE_PRIVATE);
@@ -74,6 +73,7 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        super.onDestroy();
 
     }
 

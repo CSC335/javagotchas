@@ -54,7 +54,7 @@ public class ApplicationWithPlayServices extends Application {
 
     public void unlockAchievement(String achievementId) {
         synchronized (this) {
-            if (!this.signedOut) {
+            if (!this.signedOut && this.client.isConnected()) {
                 Games.Achievements.unlock(this.client, achievementId);
             }
         }
@@ -63,7 +63,7 @@ public class ApplicationWithPlayServices extends Application {
 
     public void incrementAchievement(String achievementId, int amount) {
         synchronized (this) {
-            if (!this.signedOut) {
+            if (!this.signedOut && this.client.isConnected()) {
                 Games.Achievements.increment(this.client, achievementId, amount);
             }
         }
