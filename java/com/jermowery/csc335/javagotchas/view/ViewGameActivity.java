@@ -32,7 +32,7 @@ public class ViewGameActivity extends GameActivity {
         for (int i = 0; i < buttonGroup.getChildCount(); i++) {
             answerButtons.add((Button) buttonGroup.getChildAt(i));
             answerButtons.get(i).setEnabled(false);
-            answerButtons.get(i).setTextColor(Color.BLACK);
+            answerButtons.get(i).setTextColor(Color.WHITE);
         }
     }
 
@@ -92,19 +92,24 @@ public class ViewGameActivity extends GameActivity {
         if (updateState == UpdateState.CHANGE_QUESTION) {
             Question question = this.game.getCurrentQuestion();
             TextView questionText = (TextView) findViewById(R.id.questionText);
-            questionText.setText("#" + question.id + " " + question.text + "\n\tExplanation: " + question.explanation);
+            questionText.setText("#" + question.id + " " + question.text + "\nExplanation: " + question.explanation);
             for (int i = 0; i < this.answerButtons.size(); i++) {
                 Button b = this.answerButtons.get(i);
                 if (i < question.answer.length) {
                     b.setText(question.answer[i].text);
                     b.setVisibility(Button.VISIBLE);
                     b.setBackgroundColor(
-                            question.answer[i].isCorrect ? Color.GREEN : Color.RED
+                            question.answer[i].isCorrect ? Color.parseColor("#1B5E20") : Color.parseColor("#B71C1C")
                     );
                 } else {
                     b.setVisibility(Button.INVISIBLE);
                 }
             }
         }
+    }
+
+    @Override
+    protected void setEnabledAllElements(boolean state) {
+        return;
     }
 }

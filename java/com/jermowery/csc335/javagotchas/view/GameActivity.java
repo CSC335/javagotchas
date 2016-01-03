@@ -32,10 +32,6 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
     protected PlayerStats player;
     private AsyncTask<GameSettings, Void, Game> dataTask;
 
-    public PlayerStats getPlayer() {
-        return this.player;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +113,7 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
         @Override
         protected void onPostExecute(Game game) {
             super.onPostExecute(game);
-            if (GameActivity.this.mGoogleApiClient.isConnected()) {
+            if (((ApplicationWithPlayServices) GameActivity.this.getApplicationContext()).isConnected()) {
                 findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
             }
         }

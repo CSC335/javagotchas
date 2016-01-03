@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="match_parent" android:weightSum="1">
 
     <ProgressBar
             style="?android:attr/progressBarStyleLarge"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:id="@+id/loadingBar"
             android:indeterminate="true"
@@ -16,76 +16,78 @@
                     android:layout_height="match_parent" android:weightSum="1" android:visibility="visible"
                     android:id="@+id/gameGroup">
         <TextView
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="282dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="questionText"
-                android:id="@+id/questionText" android:layout_column="0"
+                android:id="@+id/questionText"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" android:padding="5dp"/>
+                android:layout_alignParentTop="true" android:padding="5dp" android:layout_marginBottom="5dp"/>
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
+                        android:layout_width="fill_parent"
                         android:layout_height="match_parent" android:weightSum="1" android:id="@+id/answerGroup"
                         android:layout_below="@+id/questionText">
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="answer1"
-                    android:id="@+id/answer1" android:layout_column="0" android:layout_alignParentTop="true"
+                    android:id="@+id/answer1" android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true" android:layout_alignParentStart="true"
                     android:textAllCaps="false"
-            />
+                    android:layout_marginBottom="10dp" android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:translationZ="50dp"/>
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer2"
-                    android:id="@+id/answer2" android:layout_column="0"
+                    android:id="@+id/answer2"
                     android:layout_below="@+id/answer1" android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:textAllCaps="false"
-            />
+                    android:layout_marginBottom="10dp" android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:translationZ="50dp"/>
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer3"
-                    android:id="@+id/answer3" android:layout_column="0"
+                    android:id="@+id/answer3"
                     android:layout_below="@+id/answer2" android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true" android:visibility="invisible"
                     android:textAllCaps="false"
-            />
+                    android:layout_marginBottom="10dp" android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:translationZ="50dp"/>
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="answer4"
-                    android:id="@+id/answer4" android:layout_column="0"
+                    android:id="@+id/answer4"
                     android:layout_below="@+id/answer3" android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true" android:visibility="invisible"
                     android:textAllCaps="false"
-            />
+                    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:translationZ="50dp"/>
         </RelativeLayout>
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:weightSum="1" android:id="@+id/navigationGroup"
-                        android:layout_alignParentStart="true" android:layout_alignParentTop="true">
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="&lt;---"
-                    android:id="@+id/previousQuestionButton" android:layout_alignParentStart="true"
-                    android:layout_marginTop="41dp" android:layout_alignParentBottom="true"
-                    android:visibility="invisible"/>
-            <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/questionSelector"
-                    android:spinnerMode="dropdown"
-                    android:clickable="true"
-                    android:visibility="invisible" android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/previousQuestionButton"
-                    android:layout_centerHorizontal="true"
-                    android:dropDownWidth="75dp"
-                    android:minWidth="75dp"/>
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--->"
-                    android:id="@+id/nextQuestionButton" android:layout_alignTop="@+id/previousQuestionButton"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/questionSelector"/>
-        </RelativeLayout>
+        <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                     android:layout_alignParentBottom="true" android:baselineAligned="false">
+            <TableRow android:layout_width="fill_parent">
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="&lt;---"
+                        android:id="@+id/previousQuestionButton"
+                        android:visibility="invisible" android:layout_gravity="center_vertical"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/questionSelector"
+                        android:spinnerMode="dropdown"
+                        android:clickable="true"
+                        android:visibility="invisible" android:layout_gravity="center_vertical"/>
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="--->"
+                        android:id="@+id/nextQuestionButton"
+                        android:layout_gravity="center_vertical"/>
+            </TableRow>
+        </TableLayout>
     </RelativeLayout>
 
 </RelativeLayout>

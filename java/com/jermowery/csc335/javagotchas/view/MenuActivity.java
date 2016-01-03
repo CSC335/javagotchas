@@ -2,17 +2,17 @@ package com.jermowery.csc335.javagotchas.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import com.google.android.gms.games.Games;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
 public class MenuActivity extends ApiEnabledActivity {
     private static final int MAX_TURNS = 10;
     private static final int MAX_SCORE = 10;
-    private static final int ACHIEVEMENTS_ACTIVITY = 42;
+    Button startGameButton;
+    Button viewQuestionsButton;
+    Button achievementsButton;
     private GameSettings gameSettings;
 
     /**
@@ -20,31 +20,25 @@ public class MenuActivity extends ApiEnabledActivity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        if (!this.mGoogleApiClient.isConnected()) {
-            Button startGameButton = (Button) findViewById(R.id.startGameButton);
-            Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
-            Button achievementsButton = (Button) findViewById(R.id.achievementsButton);
-            startGameButton.setEnabled(false);
-            viewQuestionsButton.setEnabled(false);
-            achievementsButton.setEnabled(false);
-        }
-
+        this.startGameButton = (Button) findViewById(R.id.startGameButton);
+        this.viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
+        this.achievementsButton = (Button) findViewById(R.id.achievementsButton);
+        super.onCreate(savedInstanceState);
         this.gameSettings = new GameSettings();
-
     }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        super.onConnected(bundle);
-        Button startGameButton = (Button) findViewById(R.id.startGameButton);
-        Button viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
-        Button achievementsButton = (Button) findViewById(R.id.achievementsButton);
-        startGameButton.setEnabled(true);
-        viewQuestionsButton.setEnabled(true);
-        achievementsButton.setEnabled(true);
+    protected void setEnabledAllElements(boolean state) {
+        this.startGameButton.setEnabled(state);
+        this.viewQuestionsButton.setEnabled(state);
+        this.achievementsButton.setEnabled(state);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        this.setEnabledAllElements(false);
+        super.onConnectionSuspended(i);
     }
 
     public void onStartGameButtonClick(View view) {
@@ -67,6 +61,6 @@ public class MenuActivity extends ApiEnabledActivity {
     }
 
     public void onAchievementsButtonClick(View view) {
-        startActivityForResult(Games.Achievements.getAchievementsIntent(this.mGoogleApiClient), ACHIEVEMENTS_ACTIVITY);
+        ((ApplicationWithPlayServices) this.getApplicationContext()).startAchievementsActivity(this);
     }
 }

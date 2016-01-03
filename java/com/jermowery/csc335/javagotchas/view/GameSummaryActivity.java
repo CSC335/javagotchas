@@ -1,6 +1,5 @@
 package com.jermowery.csc335.javagotchas.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +11,15 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 /**
  * Created by Jeremy on 12/30/2015.
  */
-public class GameSummaryActivity extends Activity {
+public class GameSummaryActivity extends ApiEnabledActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void setEnabledAllElements(boolean state) {
+        return;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.summary);
         if (!this.getIntent().hasExtra(getString(R.string.score))) {

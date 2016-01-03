@@ -3,12 +3,10 @@ package com.jermowery.csc335.javagotchas.view;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.google.android.gms.games.Games;
 import com.jermowery.csc335.javagotchas.logic.UpdateState;
 import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Question;
 
@@ -24,22 +22,34 @@ public class TurnsGameActivity extends GameActivity {
     private List<Button> answerButtons;
     private Button nextButton;
     private Button lastClicked;
+    private boolean isSetup;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        isSetup = false;
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        super.onConnected(bundle);
-        System.out.println("Fucky you you fucking piece of shit!");
+    protected void setEnabledAllElements(boolean state) {
+        if (!isSetup) {
+            this.setupNextButton();
+            this.setupAnswerButtons();
+            isSetup = true;
+        }
+        for (Button b : this.answerButtons) {
+            b.setEnabled(state);
+        }
+        this.nextButton.setEnabled(state);
     }
 
     @Override
     protected void startGame() {
-        this.setupNextButton();
-        this.setupAnswerButtons();
+        if (!isSetup) {
+            this.setupNextButton();
+            this.setupAnswerButtons();
+            isSetup = true;
+        }
         this.update(this.game, UpdateState.CHANGE_QUESTION);
     }
 
@@ -90,18 +100,18 @@ public class TurnsGameActivity extends GameActivity {
                 this.player.turnsGameStats.questionsAttempted++;
                 int index = this.answerButtons.indexOf(this.lastClicked);
                 if (this.game.getCurrentQuestion().answer[index].isCorrect) {
-                    this.lastClicked.setBackgroundColor(Color.GREEN);
+                    this.lastClicked.setBackgroundColor(Color.parseColor("#1B5E20"));
                     this.player.turnsGameStats.questionsCorrect++;
                     this.player.turnsGameStats.currentStreak++;
-                    Games.Achievements.increment(this.mGoogleApiClient, getString(R.string.achievement_the_rick), 1);
+                    ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
+                            getString(R.string.achievement_the_rick), 1);
                     if (this.player.turnsGameStats.currentStreak > this.player.turnsGameStats.maxStreak) {
                         this.player.turnsGameStats.maxStreak = this.player.turnsGameStats.currentStreak;
                     }
                 } else {
-                    this.lastClicked.setBackgroundColor(Color.RED);
+                    this.lastClicked.setBackgroundColor(Color.parseColor("#B71C1C"));
                     this.player.turnsGameStats.questionsIncorrect++;
                 }
-                this.lastClicked.setTextColor(Color.BLACK);
                 TextView explanationText = (TextView) findViewById(R.id.questionText);
                 explanationText.setText(
                         explanationText.getText() + "\nExplanation: " + game.getCurrentQuestion().explanation);
@@ -110,9 +120,8 @@ public class TurnsGameActivity extends GameActivity {
         }
     }
 
-    public void disableButtons() {
-        for (int i = 0; i < this.answerButtons.size(); i++) {
-            Button b = this.answerButtons.get(i);
+    public void disableAnswerButtons() {
+        for (Button b : this.answerButtons) {
             b.setEnabled(false);
         }
     }
@@ -137,7 +146,7 @@ public class TurnsGameActivity extends GameActivity {
 
         @Override
         public void onClick(View view) {
-            TurnsGameActivity.this.disableButtons();
+            TurnsGameActivity.this.disableAnswerButtons();
             TurnsGameActivity.this.lastClicked = (Button) view;
             TurnsGameActivity.this.game.selectAnswer(this.index);
         }
