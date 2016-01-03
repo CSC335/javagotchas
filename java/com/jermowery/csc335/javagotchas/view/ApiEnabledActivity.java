@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -86,7 +85,6 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(this.getApplicationContext(), "Result code is: " + resultCode, Toast.LENGTH_LONG);
         if (requestCode == REQUEST_RESOLVE_ERROR) {
             mResolvingError = false;
             if (resultCode == RESULT_OK) {
@@ -95,6 +93,9 @@ public abstract class ApiEnabledActivity extends FragmentActivity implements Con
                         !((ApplicationWithPlayServices) this.getApplicationContext()).isConnecting()) {
                     ((ApplicationWithPlayServices) this.getApplicationContext()).connect(this, this);
                 }
+            } else {
+                setEnabledAllElements(false);
+                ((ApplicationWithPlayServices) this.getApplicationContext()).signOut();
             }
         }
     }

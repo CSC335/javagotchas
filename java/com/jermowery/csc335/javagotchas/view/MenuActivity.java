@@ -2,18 +2,24 @@ package com.jermowery.csc335.javagotchas.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
 public class MenuActivity extends ApiEnabledActivity {
     private static final int MAX_TURNS = 10;
     private static final int MAX_SCORE = 10;
-    Button startGameButton;
-    Button viewQuestionsButton;
-    Button achievementsButton;
+    private Button startGameButton;
+    private Button viewQuestionsButton;
+    private Button achievementsButton;
     private GameSettings gameSettings;
+    private DrawerLayout navigationDrawer;
+    private ListView navigationDrawerItems;
 
     /**
      * Called when the activity is first created.
@@ -24,8 +30,45 @@ public class MenuActivity extends ApiEnabledActivity {
         this.startGameButton = (Button) findViewById(R.id.startGameButton);
         this.viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
         this.achievementsButton = (Button) findViewById(R.id.achievementsButton);
+        this.navigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+        this.navigationDrawerItems = (ListView) findViewById(R.id.navigation_drawer_items);
+        String[] items = new String[1];
+        items[0] = ((ApplicationWithPlayServices) MenuActivity.this.getApplicationContext()).getSignedOut() ?
+                getString(R.string.sign_in) : getString(R.string.sign_out);
+        navigationDrawerItems.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, items));
+        navigationDrawerItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private ApplicationWithPlayServices application;
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                application = (ApplicationWithPlayServices) MenuActivity.this.getApplicationContext();
+                String[] items = new String[1];
+                setEnabledAllElements(false);
+                if (application.getSignedOut()) {
+                    application.signIn(MenuActivity.this, MenuActivity.this);
+                    items[0] = getString(R.string.sign_out);
+                } else {
+                    application.signOut();
+                    items[0] = getString(R.string.sign_in);
+                }
+                navigationDrawerItems.setAdapter(new ArrayAdapter<>(
+                        MenuActivity.this, R.layout.drawer_list_item, items));
+
+                MenuActivity.this.navigationDrawer.closeDrawer(MenuActivity.this.navigationDrawerItems);
+
+            }
+        });
         super.onCreate(savedInstanceState);
         this.gameSettings = new GameSettings();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK && requestCode != ApplicationWithPlayServices.ACHIEVEMENTS_ACTIVITY) {
+            navigationDrawerItems.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, new String[]{
+                    getString(R.string.sign_in)}));
+        }
     }
 
     @Override

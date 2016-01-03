@@ -34,8 +34,8 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+        super.onCreate(savedInstanceState);
         Intent receivingIntent = this.getIntent();
         if (!receivingIntent.hasExtra(getString(R.string.game_decider_type))
                 || !receivingIntent.hasExtra(getString(R.string.question_selector_type))) {
@@ -113,7 +113,8 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
         @Override
         protected void onPostExecute(Game game) {
             super.onPostExecute(game);
-            if (((ApplicationWithPlayServices) GameActivity.this.getApplicationContext()).isConnected()) {
+            if (((ApplicationWithPlayServices) GameActivity.this.getApplicationContext()).isConnected()
+                    || ((ApplicationWithPlayServices) GameActivity.this.getApplicationContext()).getSignedOut()) {
                 findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
             }
         }
