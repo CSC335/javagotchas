@@ -5,9 +5,8 @@ import com.jermowery.csc335.javagotchas.proto.nano.DataProto.Data;
 import java.io.InputStream;
 
 /**
- * @author jermowery@email.arizona.edu (Jeremy Mowery)
- *
  * An abstract class for obtaining game data from an {@link java.io.InputStream InputStream}
+ * @author jermowery@email.arizona.edu (Jeremy Mowery)
  */
 public abstract class DataProvider {
     private InputStream ios;
