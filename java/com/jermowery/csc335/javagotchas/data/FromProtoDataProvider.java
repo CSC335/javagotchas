@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class FromProtoDataProvider extends DataProvider {
     public FromProtoDataProvider(InputStream ios) {

@@ -11,6 +11,7 @@ import java.util.Observable;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class Game extends Observable implements Serializable {
     private static final int SCORE_DELTA = 1;

@@ -24,6 +24,7 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public abstract class GameActivity extends ApiEnabledActivity implements Observer {
     private static final String DATA_FILE_NAME = "data";

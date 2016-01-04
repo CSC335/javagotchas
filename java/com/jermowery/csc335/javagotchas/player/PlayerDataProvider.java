@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public abstract class PlayerDataProvider {
     private InputStream ios;

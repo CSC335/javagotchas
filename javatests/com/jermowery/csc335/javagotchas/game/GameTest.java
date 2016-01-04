@@ -32,6 +32,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(sdk = 21, constants = BuildConfig.class)

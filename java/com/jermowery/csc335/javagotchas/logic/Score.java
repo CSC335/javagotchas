@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class Score implements Serializable {
     private static final int MIN_MAX_SCORE = 0;

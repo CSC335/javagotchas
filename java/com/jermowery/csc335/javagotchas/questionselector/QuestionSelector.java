@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public abstract class QuestionSelector implements Serializable {
     private Data data;

@@ -9,6 +9,7 @@ import com.google.android.gms.games.Games;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class ApplicationWithPlayServices extends Application {
 

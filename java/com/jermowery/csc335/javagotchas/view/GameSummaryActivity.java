@@ -10,6 +10,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class GameSummaryActivity extends ApiEnabledActivity {
 

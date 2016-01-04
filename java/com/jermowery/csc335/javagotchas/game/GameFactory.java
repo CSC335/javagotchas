@@ -10,6 +10,7 @@ import com.jermowery.csc335.javagotchas.questionselector.QuestionSelectorFactory
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class GameFactory {
     public static final int MAX_SCORE = 10;

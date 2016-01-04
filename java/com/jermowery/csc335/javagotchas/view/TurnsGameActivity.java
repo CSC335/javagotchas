@@ -16,6 +16,7 @@ import java.util.Observable;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class TurnsGameActivity extends GameActivity {
 

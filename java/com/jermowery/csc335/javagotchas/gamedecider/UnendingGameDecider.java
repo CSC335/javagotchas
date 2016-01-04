@@ -2,6 +2,7 @@ package com.jermowery.csc335.javagotchas.gamedecider;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class UnendingGameDecider implements GameDecider {
 

@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public abstract class ApiEnabledActivity extends FragmentActivity implements ConnectionCallbacks, OnConnectionFailedListener {
     // Request code to use when launching the resolution activity

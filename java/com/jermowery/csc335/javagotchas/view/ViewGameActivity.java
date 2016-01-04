@@ -13,6 +13,7 @@ import java.util.Observable;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class ViewGameActivity extends GameActivity {
     private List<Button> answerButtons;

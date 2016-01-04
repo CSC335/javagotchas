@@ -5,6 +5,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSetting
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  */
 public class GameDeciderFactory {
     public static final int MAX_TURNS = 10;

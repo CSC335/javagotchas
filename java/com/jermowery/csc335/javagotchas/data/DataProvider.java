@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 /**
  * @author jermowery@email.arizona.edu (Jeremy Mowery)
+ *
  * An abstract class for obtaining game data from an {@link java.io.InputStream InputStream}
  */
 public abstract class DataProvider {
