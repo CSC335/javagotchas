@@ -15,19 +15,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:weightSum="1" android:visibility="visible"
                     android:id="@+id/gameGroup">
-        <TextView
+        <ScrollView
+                android:id="@+id/questionScrollView"
                 android:layout_width="fill_parent"
-                android:layout_height="282dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="questionText"
-                android:id="@+id/questionText"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" android:padding="5dp" android:layout_marginBottom="5dp"/>
+                android:layout_height="300dp"
+                android:scrollbars="vertical"
+                android:fillViewport="true">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="questionText"
+                    android:id="@+id/questionText"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="5dp"
+                    android:layout_marginBottom="5dp"/>
+        </ScrollView>
+
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent" android:weightSum="1" android:id="@+id/answerGroup"
-                        android:layout_below="@+id/questionText">
+                        android:layout_below="@+id/questionScrollView">
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -3,6 +3,7 @@ package com.jermowery.csc335.javagotchas.view;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import com.google.android.gms.games.Games;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
 import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSettings;
 
@@ -19,10 +21,7 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto.GameSetting
  *
  */
 public class MenuActivity extends ApiEnabledActivity {
-    private static final int MAX_TURNS = 10;
-    private static final int MAX_SCORE = 10;
-    private Button startGameButton;
-    private Button viewQuestionsButton;
+    public static final int ACHIEVEMENTS_ACTIVITY = 42;
     private Button achievementsButton;
     private GameSettings gameSettings;
     private DrawerLayout navigationDrawer;
@@ -35,28 +34,28 @@ public class MenuActivity extends ApiEnabledActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.main);
-        this.startGameButton = (Button) findViewById(R.id.startGameButton);
-        this.viewQuestionsButton = (Button) findViewById(R.id.viewQuestionsButton);
         this.achievementsButton = (Button) findViewById(R.id.achievementsButton);
         this.navigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         this.navigationDrawerItems = (ListView) findViewById(R.id.navigation_drawer_items);
         String[] items = new String[1];
-        items[0] = ((ApplicationWithPlayServices) MenuActivity.this.getApplicationContext()).getSignedOut() ?
+        items[0] = ((ApplicationWithPlayServices) MenuActivity.this.getApplicationContext()).signInOptOut() ?
                 getString(R.string.sign_in) : getString(R.string.sign_out);
         navigationDrawerItems.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, items));
         navigationDrawerItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            private ApplicationWithPlayServices application;
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                application = (ApplicationWithPlayServices) MenuActivity.this.getApplicationContext();
+                ApplicationWithPlayServices application =
+                        (ApplicationWithPlayServices) MenuActivity.this.getApplicationContext();
                 String[] items = new String[1];
-                setEnabledAllElements(false);
-                if (application.getSignedOut()) {
-                    application.signIn(MenuActivity.this, MenuActivity.this);
+                if (application.signInOptOut()) {
+                    MenuActivity.this.client.connect();
                     items[0] = getString(R.string.sign_out);
                 } else {
-                    application.signOut();
+                    MenuActivity.this.setAchievementsButtonEnabled(false);
+                    application.setSignInOptOut(true);
+                    Games.signOut(MenuActivity.this.client);
+                    MenuActivity.this.client.disconnect();
                     items[0] = getString(R.string.sign_in);
                 }
                 navigationDrawerItems.setAdapter(new ArrayAdapter<>(
@@ -74,9 +73,20 @@ public class MenuActivity extends ApiEnabledActivity {
     }
 
     @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        ((ApplicationWithPlayServices) MenuActivity.this.getApplicationContext()).setSignInOptOut(false);
+        this.setAchievementsButtonEnabled(true);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        this.setAchievementsButtonEnabled(false);
+        super.onConnectionSuspended(i);
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
         this.toggle.syncState();
     }
 
@@ -88,36 +98,23 @@ public class MenuActivity extends ApiEnabledActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Pass the event to ActionBarDrawerToggle, if it returns
-        // true, then it has handled the app icon touch event
         if (this.toggle.onOptionsItemSelected(item)) {
             return true;
         }
-        // Handle your other action bar items...
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK && requestCode != ApplicationWithPlayServices.ACHIEVEMENTS_ACTIVITY) {
+        if (resultCode != RESULT_OK && requestCode != ACHIEVEMENTS_ACTIVITY) {
             navigationDrawerItems.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, new String[]{
                     getString(R.string.sign_in)}));
         }
     }
 
-    @Override
-    protected void setEnabledAllElements(boolean state) {
-        this.startGameButton.setEnabled(state);
-        this.viewQuestionsButton.setEnabled(state);
+    private void setAchievementsButtonEnabled(boolean state) {
         this.achievementsButton.setEnabled(state);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        this.setEnabledAllElements(false);
-        super.onConnectionSuspended(i);
     }
 
     public void onStartGameButtonClick(View view) {
@@ -140,6 +137,6 @@ public class MenuActivity extends ApiEnabledActivity {
     }
 
     public void onAchievementsButtonClick(View view) {
-        ((ApplicationWithPlayServices) this.getApplicationContext()).startAchievementsActivity(this);
+        this.startActivityForResult(Games.Achievements.getAchievementsIntent(this.client), ACHIEVEMENTS_ACTIVITY);
     }
 }

@@ -1,6 +1,8 @@
 package com.jermowery.csc335.javagotchas.view;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -110,6 +112,7 @@ public class ViewGameActivity extends GameActivity {
     }
 
     @Override
-    protected void setEnabledAllElements(boolean state) {
+    public void onConnected(@Nullable Bundle bundle) {
+
     }
 }

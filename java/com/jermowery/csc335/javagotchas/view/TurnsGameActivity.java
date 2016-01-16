@@ -3,6 +3,7 @@ package com.jermowery.csc335.javagotchas.view;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,19 +30,6 @@ public class TurnsGameActivity extends GameActivity {
     public void onCreate(Bundle savedInstanceState) {
         isSetup = false;
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void setEnabledAllElements(boolean state) {
-        if (!isSetup) {
-            this.setupNextButton();
-            this.setupAnswerButtons();
-            isSetup = true;
-        }
-        for (Button b : this.answerButtons) {
-            b.setEnabled(state);
-        }
-        this.nextButton.setEnabled(state);
     }
 
     @Override
@@ -105,24 +93,20 @@ public class TurnsGameActivity extends GameActivity {
                     this.player.turnsGameStats.questionsCorrect++;
                     this.player.turnsGameStats.currentCorrectStreak++;
                     this.player.turnsGameStats.currentIncorrectStreak = 0;
-                    ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
-                            getString(R.string.achievement_the_rick), 1);
+                    this.incrementAchievement(getString(R.string.achievement_the_rick), 1);
                     if (this.player.turnsGameStats.currentCorrectStreak > this.player.turnsGameStats.maxCorrectStreak) {
                         this.player.turnsGameStats.maxCorrectStreak = this.player.turnsGameStats.currentCorrectStreak;
-                        ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
-                                getString(R.string.achievement_the_rick_roll), 1);
+                        this.incrementAchievement(getString(R.string.achievement_the_rick_roll), 1);
                     }
                 } else {
                     this.lastClicked.setBackgroundColor(Color.parseColor("#B71C1C"));
                     this.player.turnsGameStats.questionsIncorrect++;
                     this.player.turnsGameStats.currentIncorrectStreak++;
                     this.player.turnsGameStats.currentCorrectStreak = 0;
-                    ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
-                            getString(R.string.achievement_impressive_loss), 1);
+                    this.incrementAchievement(getString(R.string.achievement_impressive_loss), 1);
                     if (this.player.turnsGameStats.currentIncorrectStreak > this.player.turnsGameStats.maxIncorrectStreak) {
                         this.player.turnsGameStats.maxIncorrectStreak = this.player.turnsGameStats.currentIncorrectStreak;
-                        ((ApplicationWithPlayServices) this.getApplicationContext()).incrementAchievement(
-                                getString(R.string.achievement_the_jeremy), 1);
+                        this.incrementAchievement(getString(R.string.achievement_the_jeremy), 1);
                     }
                 }
 
@@ -147,6 +131,11 @@ public class TurnsGameActivity extends GameActivity {
             b.setOnClickListener(new AnswerClickListener(i));
             this.answerButtons.add(b);
         }
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
     }
 
     private class AnswerClickListener implements View.OnClickListener {

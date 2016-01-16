@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.ProgressBar;
 import com.jermowery.csc335.javagotchas.data.DataProvider;
 import com.jermowery.csc335.javagotchas.data.DataProviderFactory;
@@ -58,12 +57,6 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
     }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        super.onConnected(bundle);
-        findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
-    }
-
-    @Override
     protected void onDestroy() {
         byte[] playerStats = PlayerStats.toByteArray(this.player);
         try {
@@ -112,10 +105,7 @@ public abstract class GameActivity extends ApiEnabledActivity implements Observe
         @Override
         protected void onPostExecute(Game game) {
             super.onPostExecute(game);
-            if (((ApplicationWithPlayServices) GameActivity.this.getApplicationContext()).isConnected()
-                    || ((ApplicationWithPlayServices) GameActivity.this.getApplicationContext()).getSignedOut()) {
-                findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
-            }
+            findViewById(R.id.loadingBar).setVisibility(ProgressBar.GONE);
         }
     }
 }

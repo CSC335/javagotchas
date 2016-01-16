@@ -3,9 +3,9 @@
           package="com.jermowery.csc335.javagotchas.view"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:targetSdkVersion="21"/>
+    <uses-sdk android:targetSdkVersion="20"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
-                 android:name=".ApplicationWithPlayServices">
+        android:name=".ApplicationWithPlayServices">
         <meta-data android:name="com.google.android.gms.games.APP_ID"
                    android:value="@string/app_id"/>
         <meta-data android:name="com.google.android.gms.version"

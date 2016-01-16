@@ -2,6 +2,7 @@ package com.jermowery.csc335.javagotchas.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,10 +14,6 @@ import com.jermowery.csc335.javagotchas.proto.nano.GameSettingsProto;
  *
  */
 public class GameSummaryActivity extends ApiEnabledActivity {
-
-    @Override
-    protected void setEnabledAllElements(boolean state) {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,11 +45,14 @@ public class GameSummaryActivity extends ApiEnabledActivity {
                 finish();
             }
         });
-        ((ApplicationWithPlayServices) this.getApplicationContext()).unlockAchievement(
-                getString(R.string.achievement_the_easy));
+        this.unlockAchievement(getString(R.string.achievement_the_easy));
         if (score.getCurrentScore() == score.getMaxScore()) {
-            ((ApplicationWithPlayServices) this.getApplicationContext()).unlockAchievement(
-                    getString(R.string.achievement_the_perfect));
+            this.unlockAchievement(getString(R.string.achievement_the_perfect));
         }
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
     }
 }
